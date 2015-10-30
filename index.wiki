@@ -12,12 +12,15 @@
 
 = To-do =
 
-* Work
-    * [[vfile:~/Work/todo.txt|Todo]]
-    * [[vfile:~/Work/done.txt|Done]]
-* Personal
-    * [[vfile:~/Documents/owncloud/todo.txt|Todo]]
-    * [[vfile:~/Documents/owncloud/done.txt|Done]]
+== Work ==
+
+* [[vfile:~/Work/todo.txt|Todo]]
+* [[vfile:~/Work/done.txt|Done]]
+
+== Personal ==
+
+* [[vfile:~/Documents/owncloud/todo.txt|Todo]]
+* [[vfile:~/Documents/owncloud/done.txt|Done]]
 
 = Talks =
 
