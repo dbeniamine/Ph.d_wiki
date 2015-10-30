@@ -1,0 +1,60 @@
+%title  Ideas for MemMap tool
+
+=  SPCD \cite{Diener10Evaluating,Cruz12Using,Cruz14Dynamic} =
+
+* No actual wake up on page faults:
+    while(1
+        sleep 100m
+        do stuff
+* No attach to process ?
+
+=  Analysis =
+
+
+Modify Cruz et al. tool $\cite{Cruz12Using}$ :
+* Record all TLB Miss independently for each core
+* Use chunks and signatures as in $\cite{Basu11Karma}$ + clocks
+* Flush chunk every $X$ access
+    * Save chunk + current function
+    * Manage clocks
+        * Idea 1: vector clock
+            * No global synchronization (small overhead)
+            * Lot of message (high overhead ?)
+            * Possibility of cross between message => acuracy loss
+            * Guillaume: read other threads vectors instead of sending
+            messages
+        * Idea 2: Global clock
+            * High overhead for sync
+            * Still true with atomic read test and swap ?
+            * Better accurary
+    * Use counters for number of access
+* Post proces
+    * reconstruct history
+        * How to go from signatures to adresses ?
+    * Combine with execution DAG
+
+=  Guillaume =
+* Tache a interval fixe (200ms)
+    * Invalide les pages
+    * Regarde les pages accédées
+    * Regarde les compteurs de perfs pour nombre d'accès
+* Faire un rapport de recherche avec idées de l'instru
+* Visu plus élaborer voir par la suite
+
+
+=  Visu =
+
+* DAG of comm
+* Memory Map
+* Communication Matrix
+* Dynamic output (for comm matrix and Memory map)
+    * Execution splitted into frames
+        * The user gives the number of frames
+        * Or we use an algorithm such as in ocelotl
+            * We might be able to do this directly by using the duration of
+               the blocks computed by ocelotl
+    * Frames are displayed as videos
+    * Frames can be
+        * Communication matrix
+        * Graph showing $@=f(thread)$ (Dynamic memory map)
+    * Which tool / How to ?

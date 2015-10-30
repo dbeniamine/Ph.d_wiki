@@ -1,0 +1,148 @@
+=  Mercredi 24/06 =
+
+* Choisir un bouquin non lu pour vendredi
+    * Sujet d'ordre général
+    * Auteur défends un point de vue
+    * Pas roman
+
+==  Objectifs ==
+
+# Lecture rapide exhaustive (mercredi)
+# Lecture rapide non exhaustive (jeudi-vendredi)
+
+*Dictator* Programme de lecture rapide gratuit
+
+=  Jeudi 25/06 =
+
+
+==  Colonnes texte "ENA" cours de langue de bois ==
+
+# "je défend l'idée que"
+# "la situation actuelle"
+# "oblige/pousse"
+# "une solution"
+
+==  _Le sauvage_ Serge Moscovici ==
+
+# Intro : le pied
+# Voiture : ennemi du pied, ami de liberté
+# limite voiture individuelle
+# solution: vélo
+# vélo : santé et contestation
+
+==  S.P.R.I. Tinibal - Duclos ==
+
+# Situation
+# Problématique
+# Résolution
+# Information
+
+
+| Problème            | Solution       | Type                        |
+|---------------------|----------------|-----------------------------|
+| Problématique (2) ? | Résolution (3) | Abstrait /    gds principes |
+| Situation (1)       | Infos (4)      | Concret                     |
+
+
+==  Recherche d'info ==
+
+# Balayer titres et sous-titres
+# Identifier les pb (trouver les '?')
+# Lire a l'envers
+
+
+==  Études de textes ==
+
+===  BNF ===
+
+# S : Bibliothèques papier / numérisation sparses
+# P : Projet BNF numériser livres / choix des livres
+# R : Mise en commun
+# I : Portail commun / collaboration renforcé
+
+===  Assemblée ===
+
+# S : BNF en état problématique (Système info / erreur lors de la création)
+# P : Faut il agir et comment ?
+# R : Rééquilibrage des moyens, laisser du temps
+# I : Les solutions sont déjà connues et en route, ne rien faire
+
+===  Culture a numériser ===
+
+# S : Littérature papier inutilisable / Google prends le pouvoir
+# P : Lutter contre Google / protéger les auteurs sans perdre les livres
+# R : Numérisation, avec le temps + de contenu directement numérique
+# I : Importance des tags, poids des géants
+
+===  Jeanneney Google print ===
+
+# S : Google print monopole
+# P : Danger pour la culture européenne ?
+# R : Projet BNF
+# I : Étendre le projet aux autres médias / collaboration européenne
+
+===  UE numérisation ===
+
+# S : Challenge de numérisation
+# P : Protéger nos filmes / livres / audios
+# R : Mise en place norme d'archive / techniques de recherche
+# I : Mettre des moyens, travailler avec Google et non pas contre
+
+===  Auteurs poursuivent Google ===
+
+
+# S : Google numérise sans permission
+# P : Respect des droits d'auteurs
+# R : Procès
+# I : Google suspend temporairement son projet
+
+
+
+===  Résumé ===
+
+# S : Numérisation en cours par Google en retard par l'état
+# P : Protéger les droits d'auteurs / sauvegarder notre culture
+# R : Projet BNF, Projet Bibliothèque européenne, collaboration renforcée
+# I : Mettre les moyens, avancer, collaborer aussi avec Google
+
+
+===  "Correction" ===
+
+* Périmètre général combat Europe / Google sur numérisation
+* blablabla ...
+
+==  Explication thèse ==
+
+# Calcul haute performance: application scientifique (simulateur phy etc.)
+# Besoin de calculer beaucoup et vite: facile d'écrire du code, dur de faire
+    du code efficace. Code série vs code parallèle (difficile a penser / a
+    écrire efficacement)
+# Augmenter les perfs / paralléliser du code existant
+# Analyser du code existant, aider a trouver les soucis de perfs, mettre en
+place des methodo d'optim
+
+==  Deuxième corpus ==
+
+# S : 
+# P : "Comment améliorer le sort des SDF ?"
+    !R1 : chasse gueux
+    !R2 : Situation d'accueil douteuse
+# R1: Faciliter l'accès au logement
+    * I1 : Les mairies ne jouent pas le jeu et refusent les "indésirable"
+# R2: Améliorer l'accueil des SDFs
+    * I2 : Dispositif national d'urgence revu
+
+=  Vendredi 26/06 =
+
+==  _Les aléas de la raison_ Laszlo Mérö ==
+
+*Problématique:*
+Comment la théorie des jeux explique la rationalité du comportement humain
+(alors que la pensée est par nature irrationnelle) ?
+
+* Force de persuasion du raisonnement logique
+* Complexité trop forte des problèmes du quotidien / nécessité de jeter des
+dé
+* Méditation / intuition: choix qui nous vas mais sans nous convaincre
+* Dilemne du prisonnier / lancé de dé jusqu'à majorité de face => mon cerveau
+comprends mais pas moi

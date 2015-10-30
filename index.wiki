@@ -1,0 +1,34 @@
+%title Ph.d Wiki
+
+= Projects =
+
+* [[Moca]]
+* [[Tabarnac]]
+* [[diary/diary|Journal]]
+* [[Soctrace/index|Soctrace]]
+* [[Bibliography]]
+* [[Teachings]]
+* [[next meeting]]
+
+= To-do =
+
+* Work
+    * [[vfile:~/Work/todo.txt|Todo]]
+    * [[vfile:~/Work/done.txt|Done]]
+* Personal
+    * [[vfile:~/Documents/owncloud/todo.txt|Todo]]
+    * [[vfile:~/Documents/owncloud/done.txt|Done]]
+
+= Talks =
+
+* [[Meetings/index|Meetings]]
+* [[Discussions]]
+
+= Meetings =
+
+* [[Seminars/index|Seminars]]
+* [[Formations/index|Formations]]
+
+= Other stuff =
+
+* [[Scratch pad]]

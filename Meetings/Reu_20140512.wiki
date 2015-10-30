@@ -1,0 +1,56 @@
+=  Analyse de perfs =
+
+==  Outil d'analyse ==
+
+voir rubrique état de l'art dans soctraces/IdeesEnVrac.md
+* Beaucoup d'outils plus ou moins complets
+* Problème pour corréler / présenter les infos
+* Orienté processeur/evenements : peut de travail sur l'analyse de la mémoire
+  (a vérifier, pas fait de bilbio précise a ce niveau)
+* Pas besoin de recreer un outil d'analyse complet
+
+==  Cartographie Mem ==
+
+* A mon avis utile et pas déjà fait de manière satisfaisante (biblio a
+approfondir par là).
+* Problème pour correler les infos aver l'architecture / avec le code
+
+===  Fabien Rozart ===
+
+Thésart (CEA Gif sur Yvette) rencontré a COMPAS'14 par Generoso
+* Travail sur analyse de mem
+* Outil d'instrumentation efficace (Fortran + python)
+* Suit juste les malloc / free
+* Notion de temps ?
+* Prediction des tailles d'allocs basé sur les expression dans malloc
+
+==  Conclusion ==
+
+A mons avis essayer de faire un nouvel outil serait une mauvaise idée
+(n'égalera pas les gros / ne sera pas utilisé). Par contre il serait
+intéressant de recoder HI avec une bonne bibliothèque d'instrumentation et
+piper la sortie sur un outil de visu + ajouter lien entre cartho et call
+graph.
+
+
+=  Europar =
+
+* Memes remarques que CCGRID + moceaux manquants = coupes changement de format
+
+=  Trucs a venir =
+
+* Summer Scool 9-12 juin **TODO Inscription**œ
+* Fin Mai -> mi Juin : Projet systeme
+* 5 juin formation vtune
+* Formations DFI ?
+
+
+=  Remarques Guillaume =
+
+* Voir paraver plus en détail
+* Envoyer papier SIGMA Guillaume
+* Frederic Petrot Tima
+
+* Trace accès mémoire :
+    * Invalider toutes les pages, revenir au bout d'un certain temps et
+      regarder les pages marquées valide

@@ -1,0 +1,4 @@
+%title  Notes Seminaire Moais
+
+= Georgio Multiprocessor speed scaling with precedence constraints =
+

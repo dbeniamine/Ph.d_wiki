@@ -1,0 +1,40 @@
+= Format =
+
+{{{
+ZoneSize Size
+Struct name adress size users
+Access adress size start end type readpercentage users
+}}}
+
+The field users (for both structure and access) is a bitmask corresponding to
+a list of threads for example 1010 means that the threads 2 and 4 are
+implicated in the access.
+The type of an access is R, W or RW. Value is the
+percentage of reads.
+
+== Example ==
+
+| `Struct A 0x4000 512 0b1`          | A structure named A at 0x4000 of size    |
+| \/                                 |  512 used by the thread 0 (2^0==1)       |
+| `Acess 42 48 0x4010 16 R 100 0b1`  | A read acess at 0x4010 of size 16 from   |
+| \/                                 | time 42 to 48 by the thread 0 (2^0==1)   |
+| `Struct Unnamed 0x5000 1024 0b101` | An anonymous structure at 0x5000 of size |
+| \/                                 | 1024 used by threads 2 (2^2==100) and 0  |
+| `Acess 49 55 0x50ff 4 RW 75 0b101` | An RW access (75% read) at 0x50ff of     |
+| \/                                 | size 4 from time 49 to 55 by threads 0   |
+| \/                                 |  and 2                                   |
+
+
+== Notes ==
+
+We need to compute all zones of a structure (simple division, ZoneSize can be
+0 !!).
+A structure or a Zone is identified by its adress.
+If a structure is not named, its name will be "Unnamed".
+An access is identified by its timestamp. The start adress of an acces is the
+identifier of the parent zone.
+Lines can be in any order.
+ZoneSize is always before a list of Struct, it can appaers several times.
+Zones can be printed serveral times. Access can't.
+The type of an access is R, W or RW. if the access type is RW value is the
+percentage of reads, in all other case value is meaningless.

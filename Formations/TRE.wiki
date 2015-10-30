@@ -1,0 +1,614 @@
+=  Formation technique de recherche d'emplois =
+
+==  Présentation ==
+
+Chebli Youness
+CERAG : gestion / 100 doctorants
+
+2eme année de thèse en marketing, "Modélisation de la e-reputation des
+entreprises" => créer une echelle pour mesurer la réputation des e-commerces
+
+Projet: enseignement + lancement d'une boite perso plus tard secteur
+diagnostique/mesure/gestion e-reputation
+
+Reseau oui mais pas très développé
+'+' Enseignements (fr/en) / 3 univ sur le CV
+'-' Aucune publi
+
+Entretiens dans son école (Lyon), autre entretien demain + entretiens au liban
+
+Mobilité: europe, pays du golfe, liban
+
+
+Stage:
+Dernière formation, après ça label validé, intéressant de discuter recherche
+d'emploi
+
+==  Intro ==
+
+* Savoir:             Connaissance
+* Savoir faire:       Mise en place du savoir
+* Savoir être :       Savoir se comporter avec les gens/ dans différents contexte
+* Savoire f faire:    Communiquer / accompagner permettre au gens de faire "encadrer des travaux pratiques"
+* Savoir Devenir:     Evoluer / s'adapter blabla
+
+==  Aprem jour 1 ==
+
+===  S'informer ===
+
+A faire pour 21/05:
+
+* Lieux ressources
+* Suport d'offres
+* Support de recherches
+* Methodes
+
+===  Proposer ===
+
+====  Le curriculum vitae ====
+
+*5 Principes*
+
+#  Cohérant
+    # CV "Classique"    ->  privé
+        * Formation
+        * Expérience
+        * Compétences
+            * Langues
+            * Bureautique
+            * Technique
+        * Information complémentaires
+    # CV "Détaillé"     ->  publique
+        * Comme précédent + détaillé
+        * Plus références
+        * Publications
+        * Colloques, communications, congrès
+    # CV "dossier"      ->  Publique
+        * Se démarquer
+        * CV détaillé ++
+        * Synthèse
+        * Objectifs
+        * Expérience éclatée => recherche / enseignement
+        * Eventuellement une ou deux synthèse de publi
+#  Précis
+    * Dates
+    * Emploi
+    * Tâches
+    * Langues (maitrisé, courant, bilingue)
+    * Descriptions des structures (taille, mission etc.)
+#  Court
+    * Pas pour le publique
+#  Vivant
+    * Utiliser des verbes d'actions
+    * "Pub": metier désirés, caractéristiques
+    * Loisir
+    * photo
+#  Clair
+
+
+Idée cv privé type
+
+* Epérience
+date a gauche
+* Formation
+    Titres et lieu
+    Infos
+    * Stages
+* Competances spécifiques
+    * Langue
+    * Bureautique
+    * Techn
+* Info complémentaires
+    * Centres d'intérêt
+    * Etat civil
+
+
+====  La lettre de candidature spontannée ====
+
+=====  Plan =====
+
+
+# L'accroche "vous"
+    * Fait marquant difficile a trouver (montrer que on a cherché sur leur boite)
+        Ex: "vous avez en 2014 publier 22 brevets dont 10 dans tel domaine ...)
+#  L'intérêt: "je"
+    Ex: "M'incite a vous rejoindre"
+# Le portrait "je"
+    Reformulation des principaux éléments du CV
+# L'argumntation "Je" "Nous"
+    * "Je donne un élement de preuve" "Ainsi au cours de ... J'ai developpé ..."
+    * Tâche reprise et valorisée dans le CV
+# La négociation "Nous"
+    # Reformuler la motivation / envie de rencontrer
+    # Demander clairement un rendez vous
+
+TODO: info sur une boite
+
+==  Jour 2 ==
+
+===  Etude APEC 2010 - 2013 ===
+
+Recherche PUB/Prive
+
+====  Lucky guess des résultats ====
+
+* Comp Sc
+    * Présenter des travaux scientifiques
+    * Analyser la bilbio / faire une veille scientifique
+    * Proposer des choses innovante
+    * Appliquer "la" methodologie scientifique
+* Savoir Etre
+    * Debattre d'idées scientifique
+    * Communiquer spontannément / de manière informelle
+    * Creer des liens avec autres chercheurs, labo ...
+    * S'impliquer dans les pojets "annexe"
+* Competances Gestion projet / équipe
+    * Encadrement (stagiaire)
+    * Recherche de financement
+    * Organiser manipulations / experimentation
+    * Plannifier un projet de recherches
+    * Evaluer les resultats et l'avancement d'un projet
+
+
+====  Réponses officielles ====
+
+* Compétances scientifiques
+    * Conaissance scientifique de base
+    * Capacité a formuler une problématique de recherche
+    * Capacité d'analyse et maitrise des outils informatique à haute technicité
+* Gestion de Projet / D'équipe
+    * Capacité a travailler en équipe
+    * Compétences en communication
+    * Compétences linguistique
+    * Culture d'entreprise
+    * Capacité a prendre en compte la pertinance de la recherche et son impact
+    sur l'environnement
+* Savoir être
+    * Créativité / innovation
+    * Ouverture d'esprit
+    * Implication motivation
+    * Adaptabilité
+
+
+====  Attentes en sciences exactes ====
+
+* Publique
+    # Conaissance sc
+    # Motivation
+    # Travail en équipe
+    # Formuler une pb de rech
+    # Capacité a travailler en équip
+* Privé
+    # Conaissance sc
+    # Motivation
+    # Travail en équipe
+    # Créativité
+    # Ouverture d'esprit
+
+====  Paradoxes ====
+
+# Proteger et partager mes résultats
+# Conserver un bon niveau d'expertise et devenir un manager
+# Rester concentré sur mon projet de recherche et être ouvert sur le monde
+# Capacité a atteindre mes objectifs mais l'abandonner si il n'est pas rentable
+
+===  Lettre de candidature spontannée ===
+
+Madame, Monsieur,
+
+Parrot est extrêmement impliqué dans le développement de drônes civils, le
+rachat de senseFly en 2012 a mis en avant votre volonté d'investir dans le
+domaine de l'acquisition d'image et de la modélisation cartographique.
+
+Je suis un enseignant-chercheur en thèse de doctorat, mes travaux portent
+actuellement sur la modélisation 3D à partir de photographies notamment,
+obtenues par des drones Ebee de Parrot. C'est pourquoi j'aimerai rejoindre
+votre entreprise afin d'utiliser mes compétences pour participer activement au
+développement des drones civils.
+
+En Février 2015, j'ai soumis un article [1] évaluant l'utilisant du drone Ebee
+(de senseFly) afin de modéliser en 3D les zones glacières, mettant en avant
+l'intérêt de ce drone mais aussi ses limites et des possibilités
+d'améliorations. Suite à cet article je développe actuellement un prototype de
+logiciel d'améliorant la précision de la localisation GPS des photos prises en
+vol.
+
+En travaillant pour Parrot, je pourrais améliorer le logiciel de localisation
+afin de le rentre plus précis et utilisable. De plus mon expertise dans le
+domaine du traitement de données nous permettrais d'améliorer l'application
+de vol des drones Parrot afin de rentre l'expérience utilisateur plus
+agréable. Un entretien nous permettrais de discuter plus précisément de ces
+idées.
+
+
+Dans l'espoir de vous voir très bientôt,
+Veuillez agréer madame, monsieur mes salutation les plus sincères
+
+Haixing He
+
+[1] "3D Displacement retireval on glacial areas by airborn photogrammetry
+He, H and Vernier, F and Morra di Cella, U, soumis a MultiTemp 2015.
+
+===  Réponse à offre ===
+
+====  Analyse ====
+
+* Niveaux d'exigeances
+    # Savoir, Savoir faire, Savoir être primordial "exigé"
+    # Savoir, Savoir faire, Savoir être important "nécessaire"
+    # Savoir, Savoir faire, Savoir être complément "souhaité"
+
+Méthodes parallèle (si on est décalé avec avec l'annonce)
+
+* Fausse candidature spontannée
+* Prise de contact par téléphone
+    * Attendre 15 jours
+    * "Je suis un peu décallé avec l'annonce, est-ce que je peux vous envoyer un CV ?"
+* Fausse relance
+
+
+    | Thèmes | Critères d'offre | Mon Profil | Eval |
+    |--------|------------------|------------|------|
+    | S      | B+5              | +8         | +    |
+    | SF     | 5 ans            | 3          | -    |
+    | \/     | info             | Oui        | =    |
+    | SE     | Rigueur          | N          | +    |
+    | \/     | com              | O          | =    |
+    | SFF    | X                | +8         | +    |
+
+
+
+| L'entreprise se nome | Ne se nome pas                   |
+|----------------------|----------------------------------|
+| Meme plan spontanné  | Idem                             |
+| "Pontages" portrait  | Idem                             |
+| exigeance <=> profil | \/                               |
+| Accroche de qualité  | Qualité 1 Je valorise le secteur |
+| \/                   | Qualité 2 Je valorise le poste   |
+| \/                   | Qualité 3 Je valorise l'annonce  |
+
+====  Red hat, job proposition:  ====
+[[http://jobs.redhat.com/jobs/descriptions/quality-engineer-beijing-beijing-china-job-1-5329565|45615]]
+
+Dear Sir, Madame, ??
+
+Red Hat is the number one company in the free software world, moreover
+you are holding strong ethical values helping people developing better
+softwares. Besides many other things, Red Hat have published the boo
+"What every developer should know about Memory" from U, Drepper which is
+a reference for people trying to build high performance applications.
+
+I am a teacher and researcher currently doing a Ph.D at university Grenoble
+Alpes in high performance computing therefore my thesis have been highly
+influenced by Ulrich Drepper's book. You are looking for a quality engineer,
+it is exactly what I love doing. Indeed the main subject of my thesis is to
+analyze applications to understand how they work and how they could work more
+efficiently. Moreover I am analyzing memory behaviour which requires hacking
+skills, to do so, I have developed several low levels tools: two
+instrumentation program (a Pintool[1] and a Valgrind Tool[2]) and one Linux
+kernel module [3]. To develop these tools I had to work on virtualized
+environment. An other aspect of ma thesis is to run experiment and anlyze
+data, therefore I designed several vizualization tools to summarize complex
+data such as memory traces. Finally I am always writing lot of scripts for
+both personal and professional usage, when I was still a student (some of them
+are available at [[https://github.com/dbeniamine|github]]), my friends used to
+say "With David there is a script for that".
+
+Working as a quality engineer, not only I will be able to develop
+quickly the tools you need, but I will help you improving your software
+efficiency. A meeting will allow us to discuss more precisely all these
+subject. Therefore I will like to meet you soon in person or by skype.
+
+In the hope of meeting you quickly
+Best regards,
+
+David Beniamine
+
+[1] "Memory Organisation Cartography & Analysis",  Beniamine, D and  Corre, Y
+and Dosimont, D and Huard, G.  Research Report 8694, INRIA Grenoble. 2015
+[2] "Cartographier la mémoire virtuelle d'une application scientifique",
+Beniamine, D. Compas'13, Grenoble, France
+[3] "TABARNAC: Identifying and Solving Memory Access Issues on NUMA
+Architectures", Beniamine, D and Diener, M and Huard, G and Navaux, P.O.A.
+submitted at IISWC'15
+
+
+=====   Commentaires =====
+
+* Parler de résultat avec les outils
+* Attention trying
+* my thesis => my researches
+
+==  Jour 3 ==
+
+===  Présentation ===
+
+# Point apprécié
+    * Critique / discussion sur les cvs
+# Précision eventuelle
+# Une question  problématique sur l'entretien d'embauche
+# Une recette que j'aime bien en ce moment
+    * Wok sauce tomate/beurre cahuete/miel/soja
+
+==  Négocier ==
+
+===  Objectifs ===
+
+| Candidat           | Recruteur              |
+|--------------------|------------------------|
+| Progresser         | Vérifier               |
+| Se valoriser       | Evaluer                |
+| Se demarquer       | Connaitre              |
+| Se faire connaitre | Vérifier l'atractivité |
+| Rassurer           | Ne pas se tromper      |
+| S'entrainer        | Ne pas se tromper      |
+| Connaitre          | Reseaux                |
+
+===  La préparation ===
+
+# *Technique* -> Poste
+    # Motivations
+    # Points d'attractivité
+    # Points d'améliorations + contre argumentaire
+    # Voir fiche métier (Apec)
+    # Questions sur le poste (30 questions structurées)
+    # Questions du recruteur
+# *Economie* -> Structure
+    # Se renseigner sur la structure
+    # Préparer des questions sur la structure
+        * Pas de questions sur lequelle je peux avoir des infos
+        * Marché
+            * Offre : concurrents ...
+            * Moyens : technique, humains financiers
+            * Politique : communication, RH, qualité - normes
+            * Partenarias
+            * Export
+# *Personnel* -> psychologique
+    # Reperer les lieux
+    # Vérifier les temps d'accès
+    # Passer des entretiens "a blanc" qui ne me correspondent pas
+    # Préparer un portrait
+    # Tenue vestimentaire
+        * Image attendue
+        * Permettre aissance
+        * Faire passer message effort vestimentaire
+
+===  Les 5 angles du Poste ===
+
+# La hierarchie : où (5 q) ?
+    * Structuration Tailles  équipes (dessus / en dessous)
+    * Places dans la structure organigrame
+    * Qui est referents / comment sont les interaction (strictes / casual)
+    * Equipes avec lesquelles on interagit
+    * Mode d'organisation (plutot plates ou arbre profond)
+    * A qui je rends des comptes ?
+    * Fonction des autres ?
+    * Raison de l'embauche ?
+    * Comment cette fonction s'inscrit dans l'entreprise ?
+# La Fonction : quoi (15 q) ?
+    * Objectifs (quantitatif / qualitatif)
+    * Mission (%age de chaque mission)
+    * Enjeux
+    * Responsabilités
+    * Relation (interne/externe) type et fréquence
+    * Périmetre de responsabilité
+    * Mission extérieurs (fréquence, où, importance) ?
+    * Part du travail individuel / équipe (réunion type et freq)
+    * Gestion budget
+    * Moyens humains technique et financier
+    * Collégues qui travaillent sur des choses proches ?
+    * Tâche quotidien
+    * Journée type
+    * Dossier en cours
+    * Organisation temporelle de la semaine
+    * Contraintes (EPI, Norme qualités)
+    * Confidentialité
+    * Management
+# La formation : Comment (3-4q) ?
+    * Formation d'entrée
+    * Au bout de combien de temps est-on opérationnel ?
+    * Accompagnement / tutorat envisagé
+    * Mode d'évaluation au début
+    * Plan formations interne
+    * Combien de formations par ans
+    * Liberté de choix de formations
+# L'evolution : (3-4q) ?
+    * Est-e qu'il y à une évolution possible ?
+    * Evolution horizontale ou verticale ?
+    * GPEC (gestion prévisonelle des Emplois et C?) ?
+    * Evolutions vers d'autres métiers
+    * Evolution géographique
+# La rémunération : Combien ?
+    * Budget alloué au poste
+    * Evolution de ce budget
+    * Type de contract
+    * Parts de l'entreprise / implication salariés dans les décisions administritaves
+
+Prétentions salariales:
+
+* Préparer a l'avance (voir Apec)
+* Fourchette salaire brut annuel +-10%
+
+===  Le déroulement ===
+
+# L'accorche 10"
+# Les Présentations 30-45" (Besoin -> Réponses)
+    # Structure (le recruteur présente, j'interagis)
+    # Poste (idem)
+    # Candidate (Je me présente faire des echos à 1. et 2.)
+# Echange 45"
+# Synthèse 15"
+    * Recruteur: informe de la suite "on va encore recevoir 4 candidats"
+    * Candidat
+        * Reformuler motivation
+        * S'informer de la suite
+        * Eventuellement poser une question
+# Suivi
+    * Ref. remerciements
+    * Evaluation
+    * Auto-eval
+        * Ce que j'ai bien dit
+        * Ce que j'ai mal dit
+        * Ce que j'aurais du dire
+        * Ce que j'aurais du ne pas dire
+
+===  Le portrait ===
+
+*Plan* (présentation de 5") :
+
+# Rappel de l'hitorique
+    # Activité actuelle
+    # Feed-back (pour éviter répétition de CV)
+# Motivation par rapport au secteur
+# Motivation par rapport a la structure
+# Motivation par rapport au poste
+
+Test pour le post Red-hat (Ingénieur Qualité)
+
+# Historique
+    * Thèse et démarche
+        * Sujet original => améliorer perf SOFA
+        * Approche => Analyse (bas niveaux Linux Kernel)
+        * Manque d'outil mémoire => mise en place d'outil
+        * Résultat => Nouveaux outils meilleurs compréhension des pb mémoires
+        * Analyses simples et portables
+    * Logiciel Libre
+        * Plugins vim
+        * Script admin système
+        * "Conférence" logiciel libre
+    * Enseignement
+        * Notamment système => facilité pour transmettre des savoir techniques
+    * Sapeurs Pompiers
+        * Travail d'équipe
+        * Esprit d'entre aide
+# Secteur
+    * Linux / Sys Admin
+    * Logiciel libre
+    * Performances
+# Structure
+    * Red-hat: Logiciel libre + Qualité
+    * Influence de Red-Hat dans le secteur informatique / haute performances
+# Poste
+    * Aspect qualité / peformance
+    * Sys admin
+    * Promotion du logiciel libre
+
+
+*Evaluation :*
+
+* Respect de la durée globale (5")
+* Equilibre des durées
+* Regards
+* Uniquement des phrases positives
+* Bonne expression orale
+    * Débit
+    * Volume
+    * Rythme
+* Texte structuré
+* Style
+* Énergie / entrain
+
+*Présentations :*
+
+* Nicolas :
+    * Poste ?
+    * Mélange passé présent pas très clair
+    * Attention CPGE / Master il s'est passé quoi ?
+    * Lien avec l'actualité bien vu
+* Moi :
+    * Timing 5"30
+    * Équilibré
+    * Pas de formation antérieur au doctorat
+    * Peut être trop de thèse / trop technique (fasse à un RH trop)
+    * Attention mot "dévier"
+    * Attention "des gens"
+    * Beaucoup de liens entre présentation et entreprise
+    * Attention "plus grande entreprise" : en quoi ?
+* Teddy :
+    * Tu parle de ton travail a l'UJF / intégration dans l'équipe => bien
+    * Tu parle de tes collaboration => bien
+    * Cours magistraux master maybe trop
+    * Attention au mot stage, parle de première expérience
+    * Developpe peut être plus l'enseignement
+    * Parle un peu plus des exposé extérieurs / impacts de papiers
+    * Insiste sur ton approche de tes travaux
+    * Regard inégal
+* William :
+    * Regard bien
+    * Attention doutes fin de phrases
+    * Attention premier stage "c'était juste de la découverte d'entreprise"
+    * Attention "Job d'été"
+* Lisianne :
+    * Regard bien
+    * Technique + vulgarisation => cool
+    * Explication des papiers :)
+    * Rebond médecine bien présenté
+    * Présentation structure
+    * Parle plus doucement
+
+===  Les tests de recrutemement ===
+
+En général 1/2 jouenée
+
+* Aptitude logique
+* Technique
+* Caractère
+    * Souvent interdit notamment rorshar
+    * Au besoin CNIL
+* Comportement
+
+Resultats du test de comportement
+
+| Type | Domaine                     | Total | Eval     |
+|------|-----------------------------|-------|----------|
+| A    | Energie dynamisme           | 6     | faible   |
+| B    | Sociabilité                 | 8     | Moyen    |
+| C    | Tenacité                    | 7     | faible   |
+| D    | Tact et diplomatie          | 9     | Moyen    |
+| E    | Confiance en soi            | 4     | T faible |
+| F    | Aissance dans la complexité | 12    | Fort     |
+| G    | Optimisme                   | 13    | Fort     |
+| H    | Honnete fidelité            | 11    | Fort     |
+| I    | Calme et maitrise de soi    | 11    | Fort     |
+
+===  S'informer ===
+
+* Lieux ressources
+    * Apec
+    * Pôle emplois
+    * Conférences / Workshop
+    * CNFPT
+    * Cabinet de recrutements
+    * OMI
+    * Inspection du travail
+    * Direction Du Travail et de l'Emploi
+    * CCO
+* Supports de recherche
+    * Info
+    * Site de bourses
+    * INFFOGRREFFE
+    * societe.com
+* Support d'offre
+    * Monster
+    * Pole emplois
+    * Apec
+    * ABG (intéliagence)
+    * CADREMPLOI
+    * CADRE ONLINE
+    * CNRS
+    * CEA
+* Méthodes
+    * Réponse à annonce (visible)
+    * Candidature spontanée (Cachée)
+    * Annonce pôle emploi / Apec (visible)
+    * Prospection par téléphone (cachée)
+    * Prospection par visible (cachée)
+    * Frq salon pro (cachée)
+    * Frq colloque (cachée)
+    * Envoie de cv au cabinet de recrutement (cachée)
+    * CV en ligne
+    * Réseau sociaux
+        * Linkedin
+        * Viadeo
+        * Research Gate
+    * Enquête économique

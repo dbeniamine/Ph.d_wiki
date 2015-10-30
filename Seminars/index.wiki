@@ -1,0 +1,18 @@
+= HPC =
+
+* [[Ph.D Diener|Phd_Diener]]
+* [[Licia 2015|Licia_2015]]
+* [[H_Servat_20150731|Thèse Harld Servat]]
+* [[Formations/JLPC_2014|JLPC 2014]]
+* [[Diener_ThreadDataMappingNuma_20131210|M. Diener Data Mapping]]
+* [[P_Mertikpoulos_LearningInDistributedSystems|P. Mertikpoulos distributed systems]]
+
+= Memo =
+
+* [[MOAIS_2014|MOAIS 2014]]
+* [[ordoId_D_Glesser_20140131|D. Glesser ordo id]]
+* [[A_Legrand_SimGrid-HPC-20131205|A. Legrand Simgrid]]
+
+= General =
+
+* [[L_Nussbaum_Projet_Debian_20140213|L. Nussbaum Debian]]

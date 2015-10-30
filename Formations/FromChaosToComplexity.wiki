@@ -1,0 +1,48 @@
+=  Jean Marc Vincent: From chaos to complexity =
+
+Laplace determinisme :  
+Avec un snapshot de l'univers et la connaissance de tous les couples
+cause-effet, il serait possible de connaitre le futur.
+
+==  Dynamical systems ==
+
+* State space
+    * Description
+    * Structure
+    * Semantic
+* Time representation
+    * Discrete
+    * Continue
+    * With / Without history
+
+
+=== Questions ? ===
+
+Infinite horizon
+
+* Stability
+* Existance of stat regime
+* Speed of convergence
+* Computability
+
+==  Magician's hat ==
+
+Todo 
+
+==  Random Promenade ==
+
+ergotic theorem : (on ergotic systems) you have the same information by 
+measuring the trajectory of one particule during a long time than by looking
+all the system.
+
+"The unstability of a deterministic dynamic gives birth to a random phenomena"
+Y.G Sinai
+
+==  Computation with chaos ==
+
+Buffon's Needle => computation of Pi
+    * Not verify efficient (100 experiment => 2 digits)
+    * First random algorithm
+
+_search : Monte-Carlo method_
+

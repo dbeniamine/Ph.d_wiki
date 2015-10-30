@@ -1,0 +1,135 @@
+= Moca =
+
+
+== Paper ==
+
+State of the art => need for efficient data collection
+
+=== Expes ===
+
+* Everything (almost) ready at grenoble
+    * _Edel_ Intel Xeon E5520
+    * _Idfreeze_ AMD Opteron 6174
+* MemProf:
+    * Segfault (bt.W)
+        * Try other bench ?
+* Moca more chunks
+* Difference on metrics:
+    * Tabarnac also traces kernel pages ?
+    * Trace lost (add more chunks ?)
+    * Stuff lost at start => nop wait end init for exec
+    * Test on Intel
+
+== Benchmarks ==
+
+* HPCG Dongarra (suggérré par Swann)
+* Trucs de Marie
+* Voir JMV
+* VIPS parsec
+* Bench papier Vetter et al.
+
+== Structs names ==
+
+* Extract code from tabarnac => external library
+* Static link
+* Add call to avoid track by moca ?
+
+== Metrics trace precision ==
+
+* NbAcc / TotalAcc => sampling rate (comparaison avec simple pintool qui compte les access)
+* NbAcc / NbDiffAddr => records per pages (surface de sampling)
+
+== Debug ==
+
+Voir differences archi edel/idfreeze
+taille caches Mémoires / NUMA
+
+BUG IS.A ???
+
+Pagefault dans le kernel Oo ??
+{{{
+    Moca_AddToChunk+0x108/0x139
+}}}
+
+{{{
+Jun 23 17:01:52 edel-67 kernel: [  840.999696] BUG: Bad page map in process dc.A  pte:80000006263e2066 pmd:631787067
+Jun 23 17:01:52 edel-67 kernel: [  841.007680] addr:00007fc12b07f960 vm_flags:00100073 anon_vma:ffff88063203ff00 mapping:          (null) index:7fc12b07f
+Jun 23 17:01:52 edel-67 kernel: [  841.018909] Pid: 3723, comm: dc.A Tainted: G           O 3.2.0-4-amd64 #1 Debian 3.2.68-1+deb7u1
+Jun 23 17:01:52 edel-67 kernel: [  841.028218] Call Trace:
+Jun 23 17:01:52 edel-67 kernel: [  841.030779]  [<ffffffff810cf43d>] ? print_bad_pte+0x1a5/0x1bd
+Jun 23 17:01:52 edel-67 kernel: [  841.036882]  [<ffffffff810d1bcc>] ? handle_pte_fault+0x302/0x7b2
+Jun 23 17:01:52 edel-67 kernel: [  841.043254]  [<ffffffff810f53c7>] ? mem_cgroup_from_task+0xe/0x13
+Jun 23 17:01:52 edel-67 kernel: [  841.049741]  [<ffffffff810cf0e1>] ? pte_offset_kernel+0x16/0x35
+Jun 23 17:01:52 edel-67 kernel: [  841.056097]  [<ffffffff81354133>] ? do_page_fault+0x320/0x345
+Jun 23 17:01:52 edel-67 kernel: [  841.062207]  [<ffffffff810eba2a>] ? virt_to_head_page+0x6/0x29
+Jun 23 17:01:52 edel-67 kernel: [  841.068428]  [<ffffffff810ebc9c>] ? virt_to_slab+0x6/0x16
+Jun 23 17:01:52 edel-67 kernel: [  841.074140]  [<ffffffff810ebd3f>] ? __cache_free.isra.41+0x3d/0x195
+Jun 23 17:01:52 edel-67 kernel: [  841.080826]  [<ffffffff813516d5>] ? page_fault+0x25/0x30
+Jun 23 17:01:52 edel-67 kernel: [  841.086458] Disabling lock debugging due to kernel taint
+
+ sur edel-68, au premier run:
+
+
+root@edel-68:~= tail -f /var/log/kern.log  =
+Jun 23 10:55:47 edel-68 kernel: [   75.006190] Moca parameters:
+Jun 23 10:55:47 edel-68 kernel: [   75.006191] Moca_mainPid	3366
+Jun 23 10:55:47 edel-68 kernel: [   75.006191] Moca_wakeupInterval	40
+Jun 23 10:55:47 edel-68 kernel: [   75.006192] Moca_SchedulerPriority	0
+Jun 23 10:55:47 edel-68 kernel: [   75.006193] Moca_taskDataHashBits	14
+Jun 23 10:55:47 edel-68 kernel: [   75.006193] Moca_taskDataChunkSize	32768
+Jun 23 10:55:47 edel-68 kernel: [   75.006194] Moca_nbChunks	20
+Jun 23 10:55:47 edel-68 kernel: [   75.006194] Moca_use_false_pf	1
+Jun 23 10:55:47 edel-68 kernel: [   75.006195] Moca_false_pf_ugly	0
+Jun 23 10:55:47 edel-68 kernel: [   75.041472] Moca correctly intialized
+Jun 23 10:57:45 edel-68 kernel: [  193.203875] BUG: unable to handle kernel NULL pointer dereference at 000000000000000c
+Jun 23 10:57:45 edel-68 kernel: [  193.212317] IP: [<ffffffff810e19da>] valid_swaphandles+0x65/0xd5
+Jun 23 10:57:45 edel-68 kernel: [  193.218714] PGD 332607067 PUD 329770067 PMD 0 
+Jun 23 10:57:45 edel-68 kernel: [  193.223570] Oops: 0000 [#1] SMP 
+Jun 23 10:57:45 edel-68 kernel: [  193.227145] CPU 7 
+
+Message from syslogd@edel-68 at Jun 23 10:57:45 ...
+ kernel:[  193.223570] Oops: 0000 [#1] SMP 
+Jun 23 10:57:45 edel-68 kernel: [  193.229150] Modules linked in: moca(O) cpufreq_powersave cpufreq_conservative cpufreq_stats cpufreq_userspace ib_iser iscsi_tcp libiscsi_tcp libiscsi scsi_transport_iscsi nfsd nfs nfs_acl auth_rpcgss fscache lockd sunrpc rdma_ucm rdma_cm ib_addr iw_cm ib_ipoib ib_cm ib_sa ib_uverbs ib_umad iw_nes inet_lro iw_cxgb3 cxgb3 mdio mlx4_en mlx4_ib mlx4_core ib_mthca ib_mad ib_core snd_pcm snd_page_alloc snd_timer iTCO_wdt snd soundcore coretemp iTCO_vendor_support crc32c_intel pcspkr i7core_edac i2c_i801 joydev evdev ioatdma edac_core acpi_cpufreq mperf button processor thermal_sys ext4 crc16 jbd2 mbcache btrfs crc32c libcrc32c zlib_deflate megaraid_sas(O) usbhid hid sg sd_mod crc_t10dif uhci_hcd ahci libahci libata ehci_hcd igb i2c_algo_bit scsi_mod i2c_core usbcore usb_common dca [last unloaded: mlx4_core]
+Jun 23 10:57:45 edel-68 kernel: [  193.309351] 
+Jun 23 10:57:45 edel-68 kernel: [  193.310989] Pid: 3707, comm: dc.A Tainted: G           O 3.2.0-4-amd64 #1 Debian 3.2.68-1+deb7u1 INSYDE Thurley/NCB
+Jun 23 10:57:45 edel-68 kernel: [  193.322166] RIP: 0010:[<ffffffff810e19da>]  [<ffffffff810e19da>] valid_swaphandles+0x65/0xd5
+Jun 23 10:57:45 edel-68 kernel: [  193.331294] RSP: 0000:ffff88032916fd38  EFLAGS: 00010246
+Jun 23 10:57:45 edel-68 kernel: [  193.336873] RAX: 0000000001ba01ba RBX: 000000000191a558 RCX: 0000000000000003
+Jun 23 10:57:45 edel-68 kernel: [  193.344479] RDX: 00000000000001ba RSI: ffff88032916fd70 RDI: ffffffff817de270
+Jun 23 10:57:45 edel-68 kernel: [  193.351957] RBP: 000000000191a558 R08: 0000000000000000 R09: 0000000000000028
+Jun 23 10:57:45 edel-68 kernel: [  193.359503] R10: 0000000000000001 R11: 0000000000000001 R12: 0000000000000000
+Jun 23 10:57:45 edel-68 kernel: [  193.367057] R13: ffff88032916fd70 R14: 000000000191a560 R15: 00000000000200da
+Jun 23 10:57:45 edel-68 kernel: [  193.374617] FS:  00007f06594b3700(0000) GS:ffff88063fc60000(0000) knlGS:0000000000000000
+Jun 23 10:57:45 edel-68 kernel: [  193.383157] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+Jun 23 10:57:45 edel-68 kernel: [  193.389270] CR2: 000000000000000c CR3: 0000000329218000 CR4: 00000000000006e0
+Jun 23 10:57:45 edel-68 kernel: [  193.396839] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+Jun 23 10:57:45 edel-68 kernel: [  193.404396] DR3: 0000000000000000 DR6: 00000000ffff0ff0 DR7: 0000000000000400
+Jun 23 10:57:45 edel-68 kernel: [  193.417425] Process dc.A (pid: 3707, threadinfo ffff88032916e000, task ffff8803309be1c0)
+Jun 23 10:57:45 edel-68 kernel: [  193.425938] Stack:
+Jun 23 10:57:45 edel-68 kernel: [  193.428119]  240000000191a558 2400000000000000 0000000000405802 ffff8803312ec608
+Jun 23 10:57:45 edel-68 kernel: [  193.436233]  0000000000405802 ffffffff810defdd ffffffff810f5436 ffff8803313bc400
+Jun 23 10:57:45 edel-68 kernel: [  193.444354]  0000000000000001 ffff8803312ec608 ffff8803311c1028 0000000000405802
+Jun 23 10:57:45 edel-68 kernel: [  193.452484] Call Trace:
+Jun 23 10:57:45 edel-68 kernel: [  193.455115]  [<ffffffff810defdd>] ? swapin_readahead+0x2f/0x9a
+Jun 23 10:57:45 edel-68 kernel: [  193.461330]  [<ffffffff810f5436>] ? try_get_mem_cgroup_from_mm+0x28/0x32
+Jun 23 10:57:45 edel-68 kernel: [  193.468444]  [<ffffffff810d1c24>] ? handle_pte_fault+0x35a/0x7b2
+Jun 23 10:57:45 edel-68 kernel: [  193.474867]  [<ffffffff810f4e09>] ? mem_cgroup_pgfault+0xf/0x10
+Jun 23 10:57:45 edel-68 kernel: [  193.481091]  [<ffffffff810cf0e1>] ? pte_offset_kernel+0x16/0x35
+Jun 23 10:57:45 edel-68 kernel: [  193.487392]  [<ffffffff81354133>] ? do_page_fault+0x320/0x345
+Jun 23 10:57:45 edel-68 kernel: [  193.493464]  [<ffffffff8100d75d>] ? __switch_to+0x1f2/0x265
+Jun 23 10:57:45 edel-68 kernel: [  193.499275]  [<ffffffff813516d5>] ? page_fault+0x25/0x30
+Jun 23 10:57:45 edel-68 kernel: [  193.504921] Code: 80 e2 7d 81 48 89 eb b8 01 00 00 00 48 d3 eb d3 e0 48 d3 e3 48 98 4c 8d 34 03 48 85 db b8 01 00 00 00 48 0f 44 d8 e8 e1 f6 26 00 <41> 8b 44 24 0c 48 89 ea 49 39 c6 4c 0f 47 f0 eb 14 49 8b 4c 24 
+Jun 23 10:57:45 edel-68 kernel: [  193.529075] RIP  [<ffffffff810e19da>] valid_swaphandles+0x65/0xd5
+Jun 23 10:57:45 edel-68 kernel: [  193.535592]  RSP <ffff88032916fd38>
+
+Message from syslogd@edel-68 at Jun 23 10:57:45 ...
+ kernel:[  193.452484] Call Trace:
+
+Message from syslogd@edel-68 at Jun 23 10:57:45 ...
+ kernel:[  193.504921] Code: 80 e2 7d 81 48 89 eb b8 01 00 00 00 48 d3 eb d3 e0 48 d3 e3 48 98 4c 8d 34 03 48 85 db b8 01 00 00 00 48 0f 44 d8 e8 e1 f6 26 00 <41> 8b 44 24 0c 48 89 ea 49 39 c6 4c 0f 47 f0 eb 14 49 8b 4c 24 
+
+Message from syslogd@edel-68 at Jun 23 10:57:45 ...
+ kernel:[  193.539294] CR2: 000000000000000c
+Jun 23 10:57:45 edel-68 kernel: [  193.539294] CR2: 000000000000000c
+Jun 23 10:57:45 edel-68 kernel: [  193.542946] ---[ end trace 6651fe5b725a250a ]---
+}}}

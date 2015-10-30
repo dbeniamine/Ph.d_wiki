@@ -1,0 +1,70 @@
+= Talk by Matthias Diener (ufrgs) =
+
+== Intro ==
+
+* 2 cost : calculation / Data access
+* Data access not uniform
+    * Complex Hierarchy
+    * Local vs Remote accesses
+* By 2018 memory access might introduce more energy consumption than
+  calculations
+
+
+== Mapping ==
+
+=== Thread Mapping ===
+
+* Analyse communication behavior between threads
+* Lot of comm => map closelopenboxy
+* Little comme => map distantly
+* Goal : Reduce cache misses
+* How do thread communicate ?
+    * Amount of comm
+    * Heterogeneity (comm pattern)
+        * Hererogeneity H=avg(variance(Threads))
+        * Initialization (every node comm with one note)
+        * Domain decomposition (every one com with its neighbour)
+        * All to All
+
+=== Data Mapping ===
+
+* Assing memory pages to notes
+* Analyse access
+* Move pages where they are accessed
+* Goal Reduce access to remote NUMA nodes
+* How do threads access to the pages
+    * Exculisvvity 
+        * = highest mem acess from a node / # mem access from   =
+          all nodes
+        * Max : 100% fully exclusive
+        * Min 1/= Nodes fully shared  =
+        * Build a tree map of access
+    * =  mem access per page =
+    * Ammount of mem used
+
+= Mapping in real life =
+
+* Manual
+    * scotch
+    * move pages
+    * High improvements
+    * Not general solution
+* Semi automatique
+    * 1st phase analyse run
+    * 2nd phase use info during execution
+    * Low effort
+    * Can't adapt changing behavior
+* Automatic
+    * Online mapping from info gathered during exec
+    * Data mapping first touch, next touch
+    * Thread mapping ?
+    * General solution
+    * Runtime overhead
+
+= SPCD : mechanism to perform mapping =
+
+* Goal analyse meme access per threads
+* Shared Pages and Communication Detections
+* Use page faults to detect comm
+    * Only one fault per page
+    * Solve this by generating false page fault solved by the runtime

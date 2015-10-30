@@ -1,0 +1,19 @@
+= Biblio =
+
+== Latex file ==
+
+[[vfile:~/Work/biblio/notes/readings.tex|readings]]
+[[vfile:~/Work/biblio/notes/readings.pdf|pdf]]
+
+== Thèse Damien ==
+
+* Voir trace compass
+
+== HDR Vania ==
+
+* Voir LTTng
+* Voir truc de collection (Emberra ?)
+
+== Arnaud ==
+
+* Thèse Herald

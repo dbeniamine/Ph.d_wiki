@@ -1,0 +1,186 @@
+= Th de l'apprentissage =
+
+== Comment apprends-t-on ? ==
+
+* Association
+* Habituation
+* Imitation
+* Mediation d'un tiers
+
+== Experience personnelle (retour work group du 11/12) ==
+
+* Apprenant
+    * Attitude
+    * motivation
+    * Autonomie
+    * ...
+    * Approche  Behaviorisme
+* Environnement
+    * Enseignant
+        * Rigueur
+        * Compétence
+        * Adaptabilité
+        * ...
+    * Taille du groupe
+    * Heterogeneite
+    * ...
+    * Approche Cognitiviste
+* Interactions
+    * Travail de groupe
+    * Relation avec l'enseignant
+    * ...
+    * Approche constructiviste
+
+== Behaviorisme  ==
+
+* Apprenant = boite noire
+* Solicitation de l'activité de l'apprenant
+* Motivation / encouragmenet etc.
+* Apprendre= adapter son comportement à une situation
+
+== Cognitivisme ==
+
+* On ouvre la boite noire
+* 3 spécialisation fonctionnelles
+* Préférences cérabrales et profils cognitifs
+* 3 mémoires
+    + Court terme
+    + Long terme
+    + procédurale ?
+* Apprendre = recevoir / traiter de l'information
+
+== Constructivisme ==
+
+* Approche systémique (intraction, enseignant, savoir, étudiant)
+* Comment percevons nous le réel ?
+    * Représentation personnelle du réel en fct de nos savoir,
+      croyances etc.
+    * Nous voyons ce que nous avons appris a voir ...
+* Conflit cognitif
+    * Entre conceptions encrée et savoir enseignés
+
+* Socioconstructivisme
+    * Conflit entre les représentations des différents aprennants
+    * Expliciter, confronter, débattre
+
+== Cncl ==
+
+* 3 approches diff pt de vues
+* Décomposent l'objet
+    + bh :Essai/Erreur
+    + Cons : problématique/ confrontation
+    + cog : structuration
+
+= Evenements d'apprentissages =
+
+== Objectifs ==
+
+* Preparer l'etu a agir en situation
+* Transformer probleme en routine
+* En se basant sur le reseau de conaissance existant (ressources
+  internes)
+* Et sur des ressources internes
+
+= Ex de mise en oeuvre d'une démarche (socio-)Constructiviste =
+
+== Debat scientifique (?) ==
+
+* 3 temps
+    * Privé (se faire une idée)
+    * Vote
+    * Publique (débat privé interdit)
+         * Intervention minimales de l'animateur
+* Mise en situation (expérience)
+* Utiliser les retour du débat pour reconstruire un cour
+    * Ne pas eviter les obstacles
+    * Defaire / Reorgansier les a priori
+    * Institutionnaliser
+    * Phase courte ordre du quart d'heure
+* Résultats majoritairement érronés => absence de dialectique entre
+  nos conaissances et notre bon sens
+* Opposition approche classique lissante / approche clivante
+    * Lissante : simplifie aux maximum, faire le lien avec le connu
+    * Clivant : entretenir la confusion, montrer des examples contre
+      intuitifs
+* Interet, l'apprenant s'interroge tout au long
+
+= Ateliers =
+
+== Debat scientifique ==
+
+__Epistemologie :__ Identifier les savoirs que l'on veut enseigner / les notions clef
+
+* Laisser les étudiants chercher (Attention 5min /= 30 sec)
+* But faire sortir pb / mauvaises solutions
+* Le professeur s'efface, dialogue entre élèves
+* Eviter les "c'est pertinent", "c'est une bonne question"
+Attention au langage corporel
+* travail en amont
+reduire l'importance de l'erreur
+importance du raisonnement
+méthode scientifique thèse, essai, erreur, nouvelle thèse
+* Element de départ
+Laisser les élèves libre ?
+Contraindre un peu ?
+Récolter les conjéctures ?
+* Pas de débat privé
+respect
+effet "cocotte minute" (pour l'étudiant):
+    * Je ne suis pas d'accord
+    * Personne ne défend mon idée
+    * La pression monte
+    * J'interviens
+
+
+==  1er contact avec des étudiants ==
+
+<u>Viau</u> : motivation = sentiment de *Compétence* , sentiment de
+*Controlabilité*, sentiment de *Valeur ajoutée*
+Jouer sur ces trois facteurs pour motiver les étudiants
+
+présentation après atelier :
+* Lancer une interaction
+    * "vous êtes bien les étudiants de tel groupe" (ne focalise pas sur le prof)
+    * Notions communes (algos connus etc) lien entre existant / cours
+* But du TP/TD/cours dans le cours / cursus
+* Presentation perso
+    * Recherches bien présenter ou pas du tout, éviter presentation trop
+      courte
+    * Mail disponibilité pourquoi etc.
+* Deroulement du cours
+    * Retard
+    * Début de cours
+    * posez des questions ...
+    * Rappelez moi vos noms
+
+==  Vulgarisation Scientifique ==
+
+* *Culture Scientifique* Connaissances et compétences scietifiques que
+  n'importe qui utilise au quotidien
+  => même but que culture générale
+* *Communication Scientifique* toute discution scientifique
+    * Vulgarisation
+    * Article
+    * Cours
+    * Séminaire
+    * Discussion café
+    * etc.
+* *Info Scie et tech* Communication scientifique à destination de personnes
+  scientifique et technique
+* *Vulgarisation scientifique* Communication scientifique à destination des
+  néophystes de la "foule". Transposition d'un savoir "savant" au grand
+publique.
+**Ce n'est pas rendre le message plus simple mais rendre la manière plus
+simple**
+* Pourquoi ?
+    * Pub/Progrès
+    * Citoyen
+    * Elargir la culture scientifique
+    * Donner envie
+    * Le but n'est pas d'apprendre, ce n'est pas un cours
+* Moyens ?
+    * Analogies / métaphores / annecdotes
+    * Schémas
+    * Vocabulaire
+    * Affectif
+    * Raconter une histoire *Attention* à ne pas trop enjoliver

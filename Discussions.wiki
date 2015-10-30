@@ -1,0 +1,31 @@
+= Flavio =
+
+* Voir scalasca
+* Correlate patterns / rutnime execution
+* Introduction to data mining, Pang-Ning TAN and Michael Steinbach and Vipin
+Kumar
+
+= L. Schnorr =
+
+* Noter traces linearite etc.
+    * Voir apprentissage / machine learning / reconaissance motifs
+* Vue carto:
+    * Intensité = sharing
+    * Intensite = nb access
+* Problemes:
+    * Faux partage
+    * Debordement de cache (besoin de bande passante)
+    * Linearite des acces
+    * Facteur NUMA
+* Analyser Pajé
+* Faire trace csv a partir trace NAS pour Lucas
+
+= A. Legrand =
+
+Aller a barcelone pour Ph.D Herald ?
+Montrer MOCA / Tabarnac au BSC => travailler ensemble sur visu
+
+= Joao Comba =
+
+* Tabarnac: Weighted importance NbAccess/Bytes
+* Call him when new vizu

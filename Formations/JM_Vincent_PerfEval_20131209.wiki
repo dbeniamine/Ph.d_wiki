@@ -1,0 +1,15 @@
+= Reducing the amount of experiments =
+
+* Select important factors
+* Create expirement orthogonal table
+    => Vectors of values for all the factors (othogonal base)
+
+= Guidelines =
+
+* Recognition of and statement of the problem
+* Selection of the response variable
+* Choice of factors = > Fishbones diagrams
+* Choice of the experimental design, randomization, replication
+* Performing the exp
+* Statistical analysis of the data
+* Conclusions and recommendations

@@ -1,0 +1,89 @@
+=  Monday, june 9th 2014 =
+
+==  Barcelon Supercomputing Center Talk ==
+
+* BSC tools: 
+* paraver, dimemas
+* Performance analysis
+
+==  Ronak Buch (UIUC) perf analysis ==
+* Questions
+* Focus on processor / network
+
+=  Tuesday, june 10th 2014 =
+
+==  Workloads ... ==
+
+* Look at Shock data management / awe server
+
+==  I/O Sched G.Aupy  ==
+
+* Prioritize bandwith among different apps
+* Two criteria dilation (user) system use (administrator)
+    * MinMax algo based on the SysEfficiency, buf if very efficient
+    application => switch to dilation
+
+=  Thursday, june 12th 2014 =
+
+==  Morning: BSC tools (analysis) *Get these slides !!!* ==
+
+[[http://www.bsc.es/computer-sciences/performance-tools/]]
+* Acquisition
+    * 3D: time /processors / event type
+* Presentation
+    * 2 points of view: profile land / timeline land
+* Extrae 
+    * Lib replace
+    * Dyninst => specify which fct to intstrument
+    * Extrae API
+        * Shutdown restart
+        * Define own events
+    * xml instrumentation control file
+* Paraver
+    * visu
+    * very efficient, re read
+    * Lot of config file, hard to choose ?
+* Do paraver tutorial: Help => tutorial => 2 HydroC tutorial
+
+==  Charm++ ==
+
+* Message directed execution
+* Over decomposition: Interaction between collections of objects 
+* No notions of processors
+* The runtime migrate the objects when it need it 
+* Analysis tool: *projections*
+
+=  Friday, june 13th 2014 =
+==  Simgrid ==
+
+* Comparison between lots of simulators
+
+==  Reproducible research ==
+*Get slides !!*
+===  Experiments ===
+* Plan experiment in advance
+    * Take the max info from each expe
+    * Minimize the number of expe
+* Randomize and replicate
+* Reproduct experiment
+    * By someone else on different machine
+    * By someone out the the lab
+    * Using the same code but different scripts
+* Tools
+    * Design expe
+        * *Expo*
+        * *XPflow*
+        * *Execo*
+        * Plush
+        * OMF
+        * Splay
+   * Kameleon => give the recipe of your VM 
+   * Vistrails : workflow engine for provenance tracking
+   * VCR save results with sha1
+   * Sumatra a lab notebook
+* Refs
+    *  Jain's book on The Art of Computer Systems Aerformance Analysis
+    * "Producing wrong data without doing anything obviously wrong"
+===  R ===
+* Look r-bloggers.com 
+* Emacs: ess (Emacs Speaks Statistics)

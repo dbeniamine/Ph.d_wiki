@@ -1,0 +1,152 @@
+Salut à tous,
+
+Voici un petit compte rendu de la réunion de ce matin. Désolé si certains
+d'entre vous reçoivent ce message en double j'ai fait une fausse manipulation
+lors du premier envoi (l'autre message est potentiellement incomplet).
+
+=  Compte rendu de la Réunion Sofa - parallélisme du 26 mars 2014 =
+
+Nous avions conclus la dernière réunion en évoquant les possible problèmes
+d'utilisation de la mémoire de Sofa due à une absence de vision globale du
+système. Nous avions de plus mis en avant l'importance de quelques fonctions
+(apply, applyJ et applyJT des différents "mapping").
+
+=  Présentation de l'analyse de performance =
+
+==  Protocole expérimental ==
+
+Les éléments concernant les expériences détaillés dans la partie suivantes ne
+sont pas indispensable à la compréhension de l'analyse mais peuvent apporter
+des pistes de réponses.
+
+===  Configuration ===
+
+Toutes les expériences ont été réalisées sur la machine "Naskapi", qui est
+dotée d'un CPU Xeon-E5 1607 (Sandy Bridge).Ce processeur est composé de 4
+cœurs partageant un cache L3 de 10Mb et ayant chacun un cache L1 et L2 privés
+(resp 8 et 64kb). Les GPUs n'ont pas été utilisés dans ces expériences.
+
+Sofa a été lancé sur 4 scènes (conseillées par Matthieu), provenant des
+exemples de flexible. A chaque fois 50 pas de temps on été simulées en mode batch
+avec une simulation de type DAG.
+
+===  Principe de l'analyse ===
+
+Afin d'analyser les performances (et de mettre en avant d'éventuels problèmes)
+de Sofa, j'ai utilisé la bibliothèque libre Likwid. Celle ci permet d'analyser
+un programme en mode "wrapper" où avec des marqueurs. Dans le premier cas,
+toute l'exécution est enregistrée. A l'opposé, le second cas permet de
+focaliser sur certaines zones de code précises.
+
+Mes premières expériences on mise en évidence un surcout non négligeable lors
+de l'utilisation des marqueurs likwid. J'ai donc combiné des résultats
+d'analyse dans les deux modes afin d'avoir des observations les plus précises
+sur le comportement de Sofa.
+
+Vous trouverez en pièce jointe l'analyse présentée pendant la réunion (au
+format HTML), Si vous êtes intéressés par les scripts d'expériences et/ou les
+logs, je peux vous les transmettre à la demande.
+
+==  Présentation des résultats ==
+
+Les premières courbes présentées montrent le temps passé en attente dans la
+boucle de simulation (l'initialisation de Sofa n'est pas incluse dans les
+mesure). D'autres expériences ont montré que cette métrique repose sur une
+mesure peu fiable (Runtime unhalted), cependant le comportement global est
+clair: il y a beaucoup d'attente (plus de 30%) en séquentiel, et ça augmente
+en parallèle.  L'augmentation du temps d'attente en parallèle est en grande
+partie due au type de parallélisation: lorsque l'on est pas dans une boucle
+openmp, 3 threads sur 4 sont en attente. Cependant le temps "idle" séquentiel
+reste non négligeable et confirme l'idée qu'il peux y avoir des problèmes de
+mémoire.
+
+La série de courbes suivante montre le pourcentage de temps passé dans les
+différentes fonctions <code>(100*temps dans la fonction / temps dans la
+boucle de simulation)</code>. On voit clairement ressortir les fonctions applyJ et
+applyJT vec. Cependant leur importance s'inverse lorsque l'on passe en
+parallèle. Il apparait donc que la parallélisation de applyJT n'est pas
+efficace (ce qui correspond au comportement attendu suite aux discussions de
+la dernière réunion).
+
+Il est aussi important de noter que si l'on somme les pourcentages de temps de
+simulation  mesuré avec ses fonction, on dépasse à peine les 35%. Il manque
+donc un peu plus de 60% du temps d'exécution. La discussion sur ce point fait
+ressortir plusieurs possibilités :
+
++ Un parcours du DAG de simulation trop lent (facile a tester en changeant
+un paramètre de l'expérience
++ Une ou plusieurs fonctions qui ont plus d'impact que prévu (a détecter
+avec un autre outil, Oprofile, Callgrind, Vtune)
++ Il s'agit peut être de temps passé dans les fonctions de Likwid
+(problème identifiable en utilisant un autre outil d'analyse).
+
+Viennent ensuite les temps de simulations qui montrent que la parallélisation
+openmp est déjà efficace au global dans la plupart des cas, cependant sur des
+scènes telles que <code>linearRigideAffineFrame</code>, la version openmp est
+plus lente que la séquentielle. François et Matthieu expliquent que cette
+scène est très petite (et ne permet donc pas de rentabiliser le coût initial
+de la parallélisation). Cependant elle contient des aspect intéressants de
+Flexible, il serait donc judicieux de travailler sur une scène similaire mais
+plus importante.
+
+Pour la suite nous nous concentrons sur la scène
+<code>lineaRigideAffineFrame</code> (il est notable que l'on observe des
+comportements similaires sur les autres scènes).
+
+Les deux dernières séries de courbes se présentent de la façon suivante: 3
+groupes de 2 courbes. Les groupes correspondent au différent niveau de la
+hiérarchie mémoire (cache L2, cache L3 et RAM). Chaque couple présente la
+bande passante et le volume de données échangées.  La première série montre les
+résultats par fonction, la seconde montre les résultats globaux.
+
+Si la parallélisation est efficace, on devrait voir soit une augmentation
+conjointe de la bande passante et du volume de données échangées (si les
+threads travaillent sur des données différentes) à tout les niveaux. Soit une
+augmentation de la bande passante et du volume de donnée en cache, et une
+stabilisation du nombre de données rapatriées depuis la mémoire en cas de
+partage efficace.
+
+Comme précédemment, la fonction applyJT vec ressort: elle utilise beaucoup
+plus de données en parallèle qu'en séquentiel. De plus, bien qu'elle soit loin
+du maximum faisable, la bande passante dont elle bénéficie n'augmente pas.  On
+soupçonne donc un problème de faux partage ou d'utilisation trop intensive de
+la mémoire. Il y a donc clairement un problème de mémoire ici, cependant, il
+est nécessaire d'approfondir l'analyse pour conclure de manière satisfaisante.
+
+A l'opposé, l'analyse globale montre une augmentation de l'utilisation des caches
+et une baisse de celle de la mémoire, ce qui signifie que les problèmes de
+applyJT vec sont compensés par l'efficacité d'autres fonctions (telles que
+applyJ).
+
+=  Conclusions et perspectives =
+
+Il ressort des discussions que les scènes étudiées sont relativement petites,
+il serait donc nécessaire de travailler sur des échantillons plus gros pour
+éviter les conclusions hâtives.  De plus, on aimerai identifier rapidement a
+quoi correspondent les 60% de temps de simulation manquant. Des expériences
+permettant d'identifier ce problème seront lancé dans les prochains jours.
+
+L'objectif a cours terme est donc d'approfondir cette analyse en utilisant
+d'autres outils (travail bibliographique a faire sur les outils existants et
+les méthodes d'analyse automatique), et en travaillant sur de nouvelles scènes
+(Matthieu a proposé son aide sur ce point). Une "réunion" est à prévoir avec
+les autres membres de MeMo qui commencent a utiliser Vtune (notamment
+Sebastien et Hao). A plus long terme, j'aimerai pouvoir intégrer dans la
+distribution de Sofa les outils nécessaires a une analyse poussé, avec
+éventuellement quelques scripts pour permettre à chacun d'évaluer facilement
+les performance tout au long du développement.  De manière plus générale
+l'idée actuelle est d'orienter ma thèse sur l'analyse automatisé des
+performances d'une application (en vue de la paralléliser).
+
+Finalement Bruno à évoqué les rencontres Sofa (en octobre ?) et la possibilité
+que j'y aille pour rencontrer la communauté et présenter mes travaux.
+
+Une prochaine réunion est à prévoir dans environ un mois (je vous re-contacte
+dans une semaine ou deux pour fixer la date.
+
+Si vous voyez quelque chose à ajouter que j'ai oublié ou si vous avez des
+suggestions pour la suite, je suis a vôtre écoute,
+
+Bon week end,
+
+David

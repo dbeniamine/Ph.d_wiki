@@ -1,0 +1,22 @@
+= Prog ch =
+
+== Images 2 ==
+
+Comparateur:
+# Verifier Longueur instance: `$(cat $f | grep ^[RIF] | wc -l)`
+# Verifier toutes transformations existent
+# Verifier resultat:
+    * Si argv1 existe alors c'est il doit contenir les transformations
+    produites par l'etu:
+    * Parser transfo / appliquer transo
+    * Comparer resultat avec attendu, print OK ou KO
+= Licia =
+
+Voir Paul-Annick Davoine: visualization of spacio-temporal data
+
+= VPA presentation: =
+
+* Present each Tabarnac plots extensively
+* Distribution:
+    * 1 line = one distribution
+    * Color = intensity

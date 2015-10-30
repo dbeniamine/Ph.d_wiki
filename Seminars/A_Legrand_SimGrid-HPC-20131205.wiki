@@ -1,0 +1,22 @@
+= LogP (voir slides arnaud) =
+
+* petit messages : asynchrone
+* gros messages : rendez vous
+* ignore tout ce qui se passe entre emeteur / recepteur
+
+= SimGrid =
+
+== Flow level model ==
+
+* Tij=Lij +S/Bij
+* Bij depends on all other flows
+* Prends en compte la topo
+* Ignore les regimes transitoires / oscillations du au protocole
+* Ignore overlap comm / comput
+
+== SMPI ==
+
+* Hybrid model fluid (contention) / LogP (3 modes)
+*  MPI : plein d'algo pour les comm collective, selon topo, taille du
+   message etc. => importe dans SMPI
+* Kaapi + Simgrid ? prediction de contention ?

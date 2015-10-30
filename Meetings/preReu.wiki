@@ -1,0 +1,47 @@
+Salut à tous,
+
+Pour préparer la réunion de demain matin, voici une petite liste des
+conclusions de la dernière réunion et de mes observations depuis / des
+points que j'aimerai aborder demain.
+
+# Réunion Sofa - parallélisme
+
+==  Dernière réunion ==
+
+* Quelques fonctions clés (applyJ applyJT et
+                                applyDJT dans les mapping)
+* Actuellement pas de travail d'optimisation sur le placement mémoire dans Sofa
+    * Beaucoup d'accès mémoire par rapport à la  quantité de calcul
+    * Pas de communication entre les différents modules
+    * Nécessité de mieux comprendre les limites de performances de Sofa
+* Comparaison biblio entre les différents framework de simulation physique
+
+==  Biblio ==
+
+* Difficulté a trouver des comparaison "intéressantes"
+    * Approches orientées réalisme / physique, pas informatique
+    * Peu d'informations sur les moteur (ou bibliothèques propriétaires
+      (PhysX,HavoC..), peu de publication directement sur les moteurs tels que
+      Bullet (trop jeux vidéos ?)
+* A priori Sofa beaucoup plus abstrait que les autres solveurs
+    * Il existe des meta-solveurs tels que gangsta wrapper
+
+==  Eval de performance ==
+
+* Utilisation de la bibliothèque Likwid
+    * Possibilité d'utiliser des marqueurs pour observer les performances  par zone
+    * Beaucoup d'informations, le tri prends un peu de temps
+    * A installer dans Sofa (external lib) avec un tutoriel dans le wiki ?
+    * Les fonctions mise en avant par Matthieu et François ressortent
+      effectivement, mais ne semblent pas être les seules a poser problème
+    * La parallélisation openmp est déjà efficace en général, mais déjà un cas de
+      baisse de performance avec openmp mis en avant.
+    * Problèmes de cache sur applyJT (vectoriel) lors du passage a openmp
+        * Augmentation du volume de donné entre le processeur et la mémoire
+        * Baisse de bande passante
+        * Bus mémoire non saturé
+
+
+A demain,
+
+David

@@ -1,0 +1,69 @@
+= Learning in distributed systems =
+
+==  Intro ==
+
+====  What is learning ? ====
+
+* Question  
+Will it rain ?
+* Prediction  
+yes
+* Outcome revealed  
+rain
+* Obtain a payoff  
+rain
+
+Repeat the process / learn by the past improve previsions.
+
+Many domain uses learning imply lot of theory with different names for the
+same thing
+
+==  Online learning ==
+
+* At t=1,2,..., the agent reveive some information/ query q_t in Q
+* Agent makes a prediction x_{t+1}
+* The outcome y_{t+1} is revealed
+* The agent incurs a loss l(x_{t+1},y_{t+1})  
+y_t is arbitrary (deterministic, stochastic, adversarial ...)
+* The agent receive a new query
+
+Objective minimize the loss sum{l}
+
+==  Regret minimization ==
+
+Minimizing the regret is impossible even in very simple classification
+problems:
+
+* Outcome from adversary
+* Adversary waut for prediction
+* Adversary gives opposite outcome
+* Agent loss is maximal
+
+Without any assumptions on how y_t is generated, the problem is not interesting
+(always possible to cheat)
+
+* An expert is a function that process the information and output a prediction
+* The regret is the cumulative loss differences (agent - expert)
+
+Goal : build an algorithm that lead to no average regret for every expert.
+
+===  Randomized Actions ===
+
+* Choose a propability (not a real choice) and roll a dice 
+* The adversary cannot know your exact decision
+
+Can the agent minimize his regret in this setting ?
+
+Exponential learning : select an expert with proba invers prop to exponantial
+of his incurred cumulation loss
+
+Doesn't work directly, work if we take into account the size of the sample in
+the probability (avoid to remove expert which are often efficient but not
+during the last window of time).
+
+==  Learning algorithms ==
+
+* Follow the leader doesn't work
+* Follow the regularized leader (FTRL) much mor efficient (use a convex
+function to choose the "argmax", called softmax).
+

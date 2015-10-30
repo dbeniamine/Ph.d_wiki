@@ -1,0 +1,22 @@
+==  Current Work ==
+
+* Placement sur sparsemeshless
+* Calcul des cellules au début de la simulation, gros coût
+* Besoin de mises a jour pour faire des découpes
+* Plugin Image, image algorithm Dijkstra
+
+==  Future work Julio ==
+
+* Replacer le centre de la cellule (relaxation de loyds)
+* Integrer le calcul dans Sofa
+* Voir des schémas d'organisation mémoire GPU
+* Comparer avec du mutli coeur
+
+==  Work for me ==
+
+* Integration avec XKAAPI
+* Multi GPU ?
+    * Beaucoup de comm entre les voisins
+    * Enviseagable entre mutli objets
+    * Diviser les objets selons zones en cours de calcul (Julio's future work)
+    * Depot git Julio, utiliser ses kernels

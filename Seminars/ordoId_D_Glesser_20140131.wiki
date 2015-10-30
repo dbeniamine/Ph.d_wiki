@@ -1,0 +1,5 @@
+= Energie consumtion reduction =
+
+* Classic sched one job : c_j\*p_j=w_j
+* Scheduling looking amount of energie instead of number of machines
+* DVFS => change the freq time

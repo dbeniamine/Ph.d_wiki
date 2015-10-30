@@ -1,0 +1,31 @@
+= Pistes de parallélisme =
+
+* Travail sur la représentation mémoire
+    * Graph voisinage parent enfants
+    * Voir compute intensity / traffic mémoire
+
+* Opération matriciels :
+    * Eigen matrix utiliser, voir différence BLAS etc.
+  
+* Piste de parallélisme
+    * Bench **Urgence maximale**
+        * Placer des timer
+        * Capture de perf
+            * Likwid / Papi / PerfSuite / PerfCtr ?
+        * Voir autres archi de parallélisation :
+            * PhysX / Bullet  => **faire une pres la dessus**
+    * Mémoire **Point pricipal**
+        * Analyser utilisation / traffic mem => confirmer point problématique
+        * Designer un allocateur sofa spécifique ?
+        * Travailler sur réutilisation de données
+        * Voir interactions solveur / detecteur de collisions
+    * Chaine flexible séquentielle :      **Attaquer ici dès que perf mesurées**
+        * Calculer tte la chaine pour chaque objet
+        * Différents objets indépendant => paralléliser la chaine
+    * OpenMP : impact jamais mesurer
+        * Tester différence Sofa (flexible) Omp / Sofa (flexible) Seq
+    * Côté collision : *voir plus tard*
+        * Structure accélératrice existantes => invisble pour le solveur /
+          détruites a chaque appel ?
+        * Découper l'espace en sous parties pour le solveur comme broad phase
+          collision ?

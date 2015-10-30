@@ -1,0 +1,149 @@
+%title  Hartree Summer school
+
+=   Monday 14/07 =
+
+==  Introduction to visualization, *Hamish Carr* ==
+
+==  Intro ==
+
+* Visualization fondation McCormack, DeFanti & Brown, 1987
+* Three situations:
+* Explain: known question, known answer
+* Determine: Knwown question, unknown answer
+    * Explore: unknown question
+* Edmond Halley (1656-1742)
+    * Bivariate plots
+    * Vector visualization
+    * Contour plots
+* Graphical Integrity
+    * Lie Factor $Lie Factor=\frac{Size of effect shown}{Size of data}$
+* Scientific Visualization see scheme on notebook
+* Classification
+    * Continuous model => Scientific Visualization
+    * Discrete model => Information visualization
+
+===  Scatter visu ===
+
+* $F: \mathbb{R}^{d(+1)} \rightarrow \mathbb{R}$
+* 2D Data
+    * Glyph rendering (huge matrix  A(i,j)=F(x,y))
+    * Hard to understand
+* Intensity Mapping
+    * Apply mapping to the Glyph
+    * The more intense the higher value
+    * Use color, conventions exists (land altitude example blue water, green
+     land)
+* Surface rendering
+    * Draw the function as a manifold
+* Contour Facturemaps
+    * *Warning:* people are used to use them for topography in other context
+     this kind of plots can be misleading
+    * Meaning:
+        * Boundaries
+        * Between isovalues
+        * Information on gradient
+* Isosurface
+    * Static cutaway (allow to see what is inside)
+* Direct volume rendering => color and opacity mapping on data (3D version
+ of color mapping)
+    * First intersection: Isosurface
+    * Average Intensity
+        * constant opacity Facture through volume
+        * equivalent to an x-ray
+    * Higher Intensity ...
+* Multi-D transfert fct
+    * Plot multi D data to see what to emphasize
+* Continous scatterplots
+
+===  Vector visualization ===
+
+* $F: \mathbb{R}^{d} \rightarrow \mathbb{R}^d$
+* Domain is spatial
+* Range consits of vectors
+* time variying $F: \mathbb{R}^{d+1} \rightarrow \mathbb{R}^d$
+* Steadness: if flow vary with time
+* Streamlines
+    * A thread haging in a steady flow
+    * Parametrised curve follows the vectors
+    * Good for smooth flow
+* Path lines
+    * Particules injected into the flow
+    * parametrised by time $t$
+    * gives a sens of the flow evolution
+* Spot Noise
+    * Motion blurred particles
+    * ellipses oriented to flow
+    * *Problems*
+        * Ambiguity
+        * Perspective shortenning
+        * **Remedy: 3D-Arrows**
+            * *Problem* : very costly
+        *3D streamlines
+            * Where start the lines
+            * Very context dependant
+        * streambals / streamtubes
+* **Tensors**
+    * Glyphs
+    * Tensor streamlines
+
+=  Tuesday 15/07 =
+
+==  Visualization with VTK, *Hank Childs* ==
+
+* VTK (Fundamental concepts)
+    * Library for visualization
+    * written C++ / binding in TCL, Java, Python
+    * Object oriented
+    * Designed for extensibility
+    * Data flow network model(+underneath // runtime )
+        * Reusability
+        * *Not efficient:*
+            * Lot of intermediate mem copy
+            * **Cache !!**
+* VTK
+    * 4 main types derived from VTKDataSets
+        * VTKStructuredGrid
+
+            Cells can be anything, no regular properties
+
+        * VTKUnStructuredGrid
+
+            Regularity between cells
+
+        * VTKLinearGrid
+
+            Simple rectangle matrix
+
+        * VTKPolyData
+    * Algorithm (VTKAlgorithm) == Filter
+        * If 0 input => Source
+        * If 0 output => Sink
+    * Every object must be in the heap
+        * Garbage collector
+            * Register() after   New() (increment ref counts)
+            * Delete()
+
+            It is also possible to use vtkSmartPointer to avoid managing this
+    * Graphisms
+
+        *See scheme on notebook*
+
+==  Parallel Visualization ==
+
+See slides, to much drawing to explain
+
+=  Thursday 17/07 =
+
+==  Visualization Applications, *Dave Pugmire* ==
+
+    Visualization is a method of computing. It transforms the symbolic into the
+    geometric [...]
+
+=  Friday 18/07 =
+
+==  Topological aspects,*Valerio Pascucci* ==
+
+* Reeb graph and contour tree
+    * Domain + functions => contracted into graph of changes
+    * Chraracterizes fundamntal properties
+    * Allow to view thinks hiden by 3D (internal component)

@@ -1,0 +1,110 @@
+= Pre reu =
+== Collision detection ==
+* Algo mixte
+* Notion forte de localité broad phase / narrow phase => en tirer une affinité 
+sched
+
+== SOFA ==
+* Pas très intéresse par parallélisme ?
+* Julio => paralléliser un algo qui a de l'avenir (selon F.F.)
+    * Optim GPU
+    * Pas de travail sur les structure de donnees 
+* Detection de collision
+    * Avec rendering, F.F., Jeremy ? LDI sigraph 2009
+    *   lancé de rayon optics
+    * Parallélisation de Everton vor travail de Valérie Gouranton
+    * Swap and Prune Mingli
+        * Joao Combat Kd-tree pour swap and prune possibilité de mettre un PMA ?
+* Reu Avec François lundi ou mardi ?
+
+== Europlexus Vincent Fauché ==
+    * Solveur explicite grosse partie 
+    * Beaucoup d'autocollisions
+    * Problème d'équilibrage de charge avec OMP +MPI, premier travail avec KAAPI
+    * Pas de GPUs
+
+== Biblio ==
+
+* Gestion de donnée distribuées
+* Contention
+* Algorithmique
+
+
+= Reu V2.0 =
+
+== FF : parallelisme actuel ==
+
+* Pre conditionneur parallele (Adrien Fortecuis)
+    * Facilite le gradien conjugué
+    * Deux threads : un calcul le prochain pré conditionneur, l'autre
+      travail en temps réel
+    * Calcul du pré conditionneur GPU (?)
+* Jeremie (travail wip, arrété d'il y a deux ans)
+    * Systeme de partage des "Data" de Sofa pour éviter duplications /
+      lock (basé sur l'idée d'OpenSG)  étât actuel ?
+* Federico (à sofia) 
+    * Version multithread
+        * Sépare simu / affichage
+        * possibilité de répartir simu sur plusieurs threads, quel
+          grain ? plugin "multithread"
+        * nouveaux composants au shift+clic => erreur
+            [[*]] Pas d'intéraction
+* Thésard de Cristian durié GPU en élément finit
+
+* Pas de coordination, initiatives diverses, volonté de parallélisme ?
+
+* Laisser l'utilisateur exprimer du parallélisme
+
+* Mic ? (Olivier qui ?) 
+
+* Machines des utilisateurs de Sofa
+    * Classique, pas peur de mettre beaucoup dans un gros GPU
+    * Pas de clusters
+
+* Décomposition de domaine ?
+    * Pas évident a cause de multimodel
+        * Une découpe adaptée au model mécanique ne le sera pas
+          nécessairement pour la detection de collisions
+    * Multi mapping, composer un objet a partir de deux autres (voir)
+        * Peut simplifier la vie ?
+    * Plutôt quelques objets complexes que plein de petits objets
+
+* Solveur
+    * Arbre, mouvement descent, forces remontent => actuellement séquentiel
+    * Possibilitée de paralléliser le parcours du graph
+    * Assemblage de la  matrice d'intéractions (?) couteux
+    * Voir solveur non assemblé / gradient conjugué
+    * Solveur direct => boites noires
+    * Solveurs multi grid pas encore essayés dans Sofa
+
+* Detection de collisions
+    * Pleins de méthodes
+    * Déjà du parallèle (boulette)
+        * wip on Sofa
+
+== Guillaume ==
+
+* Placement au niveau runtime
+* Découper les objets
+* Besoin d'appui côté Sofa
+* Réunion avec Jeremie pour comprendre son travail pré parallélisation ? 
+* Quel appli utilisées pour par actuellement pthread ? plus haut
+  niveau ?        
+
+== Bruno ==
+
+* Séparer les blocs (mécanique/rendu), et paralléliser seulement mécanique
+
+
+== Bilan  ==
+* Paralléliser par décomposition de domaine
+* Plugin flexible => solides déformables, déformations locales basées sur
+  repères orthonormés mobiles entre les noeuds des éléments finis , 
+  dans les objets. Parallélisme a extraire 
+    * Structures claires
+    * Placement en mémoire des structures ?
+* Importance du travail sur la mémoire
+    * Problème du multi model sur les accès mémoire / Des collisions
+* Transparence de la parallélisation
+    * Kaapi ok => Attention à la difficultée d'install
+

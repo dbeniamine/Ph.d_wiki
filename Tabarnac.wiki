@@ -1,0 +1,93 @@
+= Tabarnac =
+
+== New deadline ==
+
+* Visu Vtune / HTCToolkit, MemProf ?
+* Tabarnac: sauver truc temporaires
+    * acc: distribution /first touch
+    * Structs: struct size
+    * Structsstats: RWplots
+* Visu total by thread
+* Example page
+* Rewrite advices
+
+== Visu ==
+
+* Conseil dans une page générale a part
+
+== Papier ==
+
+Ajouter le projet sur github + page
+
+=== Mail matthias ===
+
+* Insister sur aspect méthodologie et non outils
+    * Réutilisable
+    * cohérence / choix des métriques
+* Ensemble de stats
+* moins parlr d'outil de nouveauté
+* parler des limites
+    * scalabilité
+        * Simplifier les graphs
+    * Appli multi phases
+* Plus de Bench
+    * Fortran
+    * parsec
+    * Exemple inefficace avec auto tool
+* Etat de l'art côté vizu (Vampir / Paratools) => réponds a la critique c'est
+    une série de plots
+* Portabilité => Pin tourne sur AMD mais moins bonnes perfs ?
+
+=== Réu guillaume ===
+
+*   Explications plot pas clair
+*   Etat de l'art a refaire, ajouter:
+
+{{{
+@INPROCEEDINGS{DeRose02sigma:a,
+    author = {Luiz DeRose and K. Ekanadham and Jeffrey K. Hollingsworth
+    and Simone Sbaraglia},
+        title = {SIGMA: A Simulator Infrastructure to Guide Memory
+        Analysis},
+        booktitle = {In Supercomputing},
+        year = {2002},
+        pages = {1--13}
+    }
+}}}
+
+{{{
+@inproceedings{Gimenez:2014:DOM:2683593.2683612,
+ author = {Gim{\'e}nez, Alfredo and Gamblin, Todd and Rountree, Barry and Bhatele, Abhinav and Jusufi, Ilir and Bremer, Peer-Timo and Hamann, Bernd},
+ title = {Dissecting On-node Memory Access Performance: A Semantic Approach},
+ booktitle = {Proceedings of the International Conference for High Performance Computing, Networking, Storage and Analysis},
+ series = {SC '14},
+ year = {2014},
+ isbn = {978-1-4799-5500-8},
+ location = {New Orleans, Louisana},
+ pages = {166--176},
+ numpages = {11},
+ url = {http://dx.doi.org/10.1109/SC.2014.19},
+ doi = {10.1109/SC.2014.19},
+ acmid = {2683612},
+ publisher = {IEEE Press},
+ address = {Piscataway, NJ, USA},
+}
+}}}
+
+*   Discuter Pin portabilité / Dyninst / IBS  et portabilité
+*   Instrumentation => niveau page, pas de question de cache
+*   Insister sur intervention user (exemple garbage in / garbage out)
+*   Benchmarks plus complexes
+
+== Conf ==
+
+* [ACM PAPP](http://oldwww.acm.org/conferences/sac/sac2016/) trop high level ...
+* [ACM/SPEC](https://icpe2016.spec.org/)
+    * International Conf on perf engineering
+    * Track: Performance measurement and experimental analysis
+    * 15 sept: abstract
+    * 30 sept: paper
+* [VPA](http://cedmav.org/events/vpa-2015.html)
+    * Workshop SC
+    * Memory and network traffic visualization
+    * 27 juillet

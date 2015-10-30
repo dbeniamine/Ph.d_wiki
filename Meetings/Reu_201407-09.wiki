@@ -1,0 +1,152 @@
+%title Notes Ete 2014
+
+=  Hartree =
+
+* Pas mal d'infos sur des techniques de visu, orienté visu data scientifique (aka physique)
+* Fin très orienté comment faire de la visu en parallèle (pas très intéréssant
+ici)
+* Streamlines / pathlines intéréssantes pour HI
+* Beaucoup de discussion sur les visu 3D, eventuellement utilisable pour nous,
+mais pas sûr de la clareté des resultats.
+* Est-ce intéressant d'utiliser des outils de visu scientifique "traditionnel"
+    * Plus adapté a des grosses quantité de data
+    * Manipulation facile
+    * Ici 3D dont une discrète
+    * Gros coût pour mettre les choses en route ?
+* Cas d'étude: Filtre VTK (beaucoup de copies mémoire "useless")
+
+Hank Childs intéréssé par notre travail, potentiellement encore plus portage
+Xeon Phi
+
+=  Avancées depuis dernière réu =
+
+==  Format des accès dans Soctrace ==
+
+* Un Agglomérat d'accès HI => 1 ou deux accès
+* 1 accès ocelotl = une variable, valeur = nombre d'accès dans l'agglomérat
+* 4 types d'accès
+    * Shared Read
+    * Shared Write
+    * Private Read
+      Private Write
+
+==  Première visu ocelotl ==
+
+* Pas encore très claire, valeurs étranges
+* Aggregation 2D très lente avec trace de 19M ...
+    * Les traces se ressemblent
+    * Voir détail du calcul avec Damien
+* Aggretation 1D semble KO
+* Vue par table: Filtre par event producer recursif
+
+==  Bilbio ==
+
+* RAS pour le moment
+
+
+=  Deuxième réu =
+
+==  Biblio ==
+
+===  Record & Replay ===
+
+* Chunk Based memory race recorder \cite{Pokam09Architecing} :
+    * Information récupérés via les message sur le bus du cache
+    * Notion de chunk => bloc d'instruction executé en isolation
+    * Adresses accédées retenues a l'aide de signature [18,3] encodées dans
+        des filtes e bloom [2]
+    * les différents coeurs maintiennet une liste d'adresse en cours
+        d'écriture / lecture
+    * Quand un conflic est detecté (lecture d'une adresse écrite par un autre
+        coeur, ou écriture d'une adresse utilisé par un autre coeur), le cunk se
+        termine. On vide les liste d'adresses.
+
+* Karma \cite{Basu11Karma} :
+    * Publié à super computing, très bas niveau mais a priori objectif tout
+    type de développeurs HPC
+    * 8 registres: vecteurs de Bits + adresses mémoires, notion d'épisode (un
+    épisode se termine lors d'un échange de données interprocésseur,
+    l'ensemble des épisodes et des échange = DAG de l'exec), écritures mémoire
+    à la fin des épisodes
+* DeLorean \cite{Montesinos08DeLorean} :
+    * Même genre que Karma
+    * Oriente bug multi threads
+
+Ces trucs semblent super, mais HW.  
+Utilisation de filtres de Bloom\cite{Bloom70SpaceTime} pour savoir quels adresse sont accédés dans un
+chunk.
+
+* 1 vecteur de m bits.
+* k fonction de hashage qui donne une valeur entre 0 et m-1
+* Insertion d'une @ : calculer les k clé, mettre a 1 tous les bits
+  correspondant aux clés.
+* Test d'appartenance d'une @: si un des k bits est à 0, l'adresse n'est pas
+  dans le set, sinon elle y est (ou pas: faux positif).
+* Probabilité de faux positif (calculé dans \cite{Sanchez07Implementing}, m=1024)
+    * Moins de 120 insertions proba < 0.03, k=8 semble être l'idéal (testé
+    1,2,4,8)
+    * Plus de 120: La proba augmente très vite, mieux vaut une seule clé.
+
+Utilisation d'implémentations hardware ...  
+
+* Idées:
+    * Instrumentation qui ne traite pas les accès mais les invalidation de
+    cache. Gain ?
+    * Traitement des adresse avec des filtres de Bloom.
+
+* MAQAO \cite{Djoudi05MAQAO}
+* Se place en concurrent HPC
+    * Toutes analyses faites au niveau compilateur
+    * Section intéréssante sur les outils d'analyses
+    * Reconaissance de patterns dans le code assembleur
+    * Pas exploitable pour nous (en tout cas pour le moment)
+
+===  Ecritures d'un nouvel outil ===
+
+* Guide module noyau \cite{Salazman01Linux}
+
+==  RQ GUillaume ==
+
+* Visu:
+    * Opacité du bloc: quantité d'infos
+    * Jouer sur els textures
+    * Se balader sur un disque de couleurs (S/P R/W)
+* Court terme
+    * Analyse
+        * Module  noyau
+            * Comment récupérer l'info
+            * Comment marquer les pages / placer un handler
+        * Instrumentation légère
+* Second temps => comment gerrer les infos
+
+
+=  Reu Bruno 17/09 =
+
+* Rappel dernière réu => conclusion besoin d'approfondir l'analyse
+* Biblio outil d'analyse
+    * Beaucoup de framework, plus ou moins spécifiques
+    * Se concentrent toujours sur le(s) CPU(s)
+    * Des outils d'analyse / instrumentation intéréssant Pin, DynInst,
+      Dynamo ...
+    * Peu de travail sur l'analyse mémoire
+        * MemProf => fortement NUMA, localiser les pb de perf dus a des accès
+        remote
+        * Fabien Rozar outil d'analyse (prototype, papier COMPAS) de
+        la charge de la mémoire, loin de la detection de pattern
+* Objectifs
+    * Ne pas essayer de recoder un framework complet / s'integrer dans un
+    truc existant (Soctrace)
+    * Analyse mémoire: spatio-temporelle, information sur la densité/
+    disperion, pattern d'accès.
+    * Eventuellement deux types d'analyse (grain fin / gros grain)
+* Travail en cours
+    * Nouvelle visu sortie HI sur ocelotl OK => mini démo
+    * Lecture Record & Replay
+    * Apprentissage module kernel (expliquer outil d'analyse gros grains)
+* Administratif
+    * Rapport suivi de thèse
+
+=  Commentaire Bruno =
+* Visu sur des outils comme Vit
+* Voir InfoVis2014
+* Regarder travaux Matthias Diener

@@ -1,0 +1,9 @@
+= Contexte =
+
+* Runtime parallèle
+    * Habituellement
+        * Équilibre charge
+        * Approche réactive
+    * Approche statique: calcul du nombre d'accès réel => bande passante
+    nécessaire
+

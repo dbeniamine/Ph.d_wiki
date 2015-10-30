@@ -1,0 +1,28 @@
+= Towards instantaneous performance analysis using coarse-grain sampled and instrumented data =
+
+== Folding mechanism ==
+
+* Instrumentation delimits repetitive regions
+* Sampling => progression
+* Create a syntetic instance with combination of sampled data
+
+
+=== Perf ctr ===
+
+Three summary plots:
+
+* Instruction Miss
+    * Type of instructions / time
+* Arch impact
+    * Type of miss (cache level, msis predict)
+* Stall distrib
+    * causes of stall
+
+=== Memory ===
+
+* No thread infos
+
+
+== Todo ==
+
+Download tool from bsc.es

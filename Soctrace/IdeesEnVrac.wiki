@@ -1,0 +1,142 @@
+=  Idees en vrac =
+
+==  HeapInfo ==
+
+===  Pj Dump ===
+
+====  Informations stockées dans Hi ====
+
+* Block
+    * @Début
+    * @Fin
+    * ThreadId (creator)
+    * List Acces
+    * String Name
+    * Bool Shared
+* Access
+    * @Begin
+    * @End
+    * Time Start
+    * Time End
+    * %Read
+
+====  Tentative de représentation Pj_Dump ====
+
+{{{
+Thread
+   | Créent
+   v
+Block   -> | Variable Start @
+  |        | Variable end @
+  | Contient
+  V
+Access  -> Differents types d'accés -> | Local  | READ 
+  |                                    | Remote | Write
+  v 
+aille, temps, adresse
+}}}
+
+
+{{{
+Container, "0", Thread,0,inf,inf,"Th0"
+Container, "0", Thread,0,inf,inf ,"Th1"
+Variable,"Blk0",Start@,1,42,41,"0x00ba"
+Variable,"Blk0",End@,1,42,41,"0x00a2"
+Container, "Th1", Block,1,42,41, "Blk0"
+Event,"Blk0", Remote READ, 3, "0x00aa"
+}}}
+
+Il manque la taille et la durée de l'accès.
+Durée faisable en utilisant un State
+Taille ? => plusieurs informations dans le champs value: "0x00aa->0x00b2"
+
+Est-ce que PJ_dump permet vraiment d'exprimer tout les infos de HI ?
+
+===  Hi + Socctrace ===
+
+Integrer les fonctions en déclencheur d'evenements.  
+Utiliser un format de sortie binaire plus compact.  
+Cartographie interactive.  
+
+===  Likwid ===
+
+* Mode stethoscope, mode palier de déclenchement ?
+* Container : zone de codes, fonctions, event sets
+* Event likwid = events, metriques
+* Différents types de runs ? (openmp, seq, perfmon ...)
+* Comment savoir quelle fonction on execute
+* Utilisation en mode library dans un outil possible ?
+* LibPapi plus puissant ?
+
+==  Objectif ==
+
+* Gros outils de trace pipé sur soctrace
+* Calcul carto + event timeline avec fct name
+* Utiliser le toolkit HPCToolkit => mapper vers soctrace
+
+==  Etat de l'art ==
+
+* Vtune 
+    * Zoom faisable, difficulté de jouer avec les différentes représentations
+      pertes d'infos (stack trace quand on passe dans le noyeau)
+    * Très lourd et lent
+* HPC Toolkit  \cite{Adhianto10HPCTOOLKIT} 
+    * Works on optimised binary
+    * No instrumentation 
+        * Statistical sampling
+        * Event trigger 
+            * Synchronous : I/0 events, allocations
+            * Asynch : Perfctr
+        * Wrapper library (MPI, openmp ?, ...)
+        * Save context & events
+    * Binary analysis => programm structur
+    * Lot of different tools for each step
+    * Visualisaton tool seems poor => **replace with soctrace**
+    * **Can be used as a base tool** 
+* Hardware Performance Monitor Toolkit => fusionné dans IBM HPC Toolkit ?
+* Simulation Infrastructure to Guide Memory Analysis \cite{Rose02SIGMA}
+    * Objectif :infos sur les cache
+    * Intrumentation de zones ciblées
+    * Travail sur la compression des traces
+    * Outil de simulation permet d'analyser le comportement de l'appli en
+      changeant l'archi
+* Paradyn \cite{Miller95Paradyn}
+    * Bibliothèque d'instrumentation dynamique
+    * Search model and performance consolutant 
+        * Recherche sur trois axes why / when / where
+        * Hypothese predefinies (statique) expliquant des problemes de perfs
+    * Papier de 95, sur le site rien sur la recherche de pb de perfs ...
+* Paraver \cite{Pillet95PARAVER}
+    * Outil graphique de visualisation de trace
+    * Papier un peu
+    * Fichier de trace simple generable avec leur outil (DINEMAS) ou n'importe
+      quel script
+    * Vieux papier, voir la tete de la gui maintenant
+* Paramedir \cite{Jost04Paramedir}
+    * Basé sur paraver
+    * Permet d'extraire en ASCII de metriques depuis une analyse Paraver
+    * Possibilité de définir des métriques complexes
+* VAMPIR \cite{Brunst10Performance}
+    * Orienté système distribué: visu hierarchique (process MPI, openMP thread)
+    * Combiné avec call stack
+    * Orientée processeur
+* ATUM \cite{Agarwal86ATUM}
+    * Microcode => trace au niveau du processuer (en dessous de l'OS)
+    * Processeur dépendant
+    * Vieux papier (1986) a mon avis obsolète graces aux compteurs de perfs
+* URSA MINOR \cite{Park00Supporting}
+    * Site introuvable
+    * Outil d'analyse + Visu + Guidage avec MERLIN (voir papier)
+    * Visu moche 
+    * Possibilité de réarranger des donénes à volonté
+* MERLIN \cite{Kim01Performance}
+    * Automatic performance advisor
+    * Guide la recherche de problèmes comme dans paradyn
+    * Ressemble aux conseils de Vtune 
+* TAU \cite{Shende06Tau}
+    * Instrumentation via preproc, wrapper lib, binaire avec Dyninst
+      (projet Paradyn), au niveau de la VM (java)
+* Scalasca ? http://www.scalasca.org/publications/by-year/publications-by-year.html 
+
+
+ 

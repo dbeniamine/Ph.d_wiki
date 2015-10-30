@@ -1,0 +1,21 @@
+= RES =
+
+* [[Autrans-201312|Autrans]]
+* [[LRE|Lecture Rapide et Efficace]]
+* [[TRE|Technique de Recherche d'Emplois]]
+
+= Summer school =
+
+* [[Hartree_Summer_School|Hartree summer school]]
+* [[JLPC_2014|JLPC 2014]]
+
+= Lectures =
+
+* [[FromChaosToComplexity|Chaos to complexity]]
+* [[JM_Vincent_PerfEval_20131209|J.M.V Perf Eval]]
+
+= Others =
+
+* [[Suivi_doctorants_1A|Suivi doctorants 1A]]
+* [[RemarquesGuillaumeSuivDoct1A]]
+

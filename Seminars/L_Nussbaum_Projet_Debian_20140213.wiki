@@ -1,0 +1,25 @@
+= Projet Debian =
+
+== Distribution ==
+
+# Integration de projets amoints
+# distribution de logiciel aux utilisateurs (infrastructure)
+# Interface unifiée d'install
+# Niveau de support unifié
+
+== Developpeurs ==
+
+environ 1000 dev, 3 équipes:
+
+* Tache de packing
+* Infrastructure de la disrtib
+* Support et comm
+
+== Debian Project leader ==
+
+Elu a la majorité de condorcet (systeme de vote cool BTW)
+
+* Travail de mediation 
+* Encourage projets importants
+* Représentant du projet
+
