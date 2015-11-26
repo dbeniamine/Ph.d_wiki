@@ -1,0 +1,11 @@
+= MOCA traces =
+
+== mwetoolkit ==
+
+Je ne voit rien sur la detection automatique de pattern ...
+Voir Aussi ScPipe inria Benoît Sagot
+
+= Biblio =
+
+Reorganisation des fichiers + trucs de SC  (2 papiers) + trucs en retard (1
+papier + dex thèses a ranger)

@@ -1,0 +1,62 @@
+= Résumé réunion =
+
+== SC'15 ==
+
+* VPA'15
+    * 4 contacts suite a présentation:
+        * Josefina Lenis (Oregon)
+            * bioinformatics, memory mapping, utilisatrice potentielle
+        * Alfredo Gimenez(LLNL)
+            * MemAxes, devrait me recontacter pour discuter 
+        * Brian Van Esse (LLNL) visu tabarnac + NUMA node mapping  
+        * Yukinori Sato (Tokyo)
+    * Autres questions:
+        * Montrer uniquement accès non cachés
+        * Montrer zone d'accès (processeur / banc NUMA)
+        * Donner une idée du gain possible
+    * Matthias devrait m'envoyer un mail pour discuter (again) de la suite ...
+    * Slides online
+* Un ou deux papiers potentiellement intéressants à lire 
+    * Visu resultats traces dans visu scientifique
+        * Potentiellement utile pour truc comme SOFA
+    * Seperating wheat from chaff
+        * Domaine de traces 3D
+        * Repérage des zones intéressantes
+        * Repérage de similitudes
+
+== Autres ==
+
+* Identification de MWE inria aussi SxPipe
+
+== Discussion ==
+
+=== TABARNAC ===
+
+* Visu accès remote
+    * Compter nombre d'accès remote
+    * Dimension noeud NUMA qui déclanche l'accès ?
+    * Meme chose que distribution / Essayer aussi avec y=NumaNode
+    * `Intensité = (AccTot == 0)?N/A:AccRemote/AccTot`
+* Config choisir ce qu'on collecte
+    * Juste cache miss
+    * Juste remote
+    * ...
+
+=== Analyse auto ===
+
+* Stagiaire reconnaitre du faux partage
+    * Bench pré faites
+    * MWEToolkit échanger un peu avec Carlos
+* Mail a von Rüden
+
+=== Autre ===
+
+* File sys indexing linux
+* Tracer simu SOFA
+* Cleaner main git et envoyer à Guillaume
+
+=== Biblio ===
+
+* Relire papier von Rüden
+* Faire biblio SC'15
+* Truc récupération data struct

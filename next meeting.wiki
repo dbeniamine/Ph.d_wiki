@@ -1,12 +1,1 @@
-* VPA'15 => Caméra ready still no answer, 9 pages submitted
-* IPDPS
-    * BIG Expe waiting 4 machines param + NAS, At least 30 runs of each by
-        monday morning
-    * Reproductibility
-        * G5K image + env online
-        * Results archive online (might be very heavy)
 
-
-TODO:
-    * param: 2*25 runs
-    * NAS:   2*15 runs

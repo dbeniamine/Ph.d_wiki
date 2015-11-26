@@ -1,0 +1,34 @@
+= Tal ? Memory access paterns Tueday afternoon =
+
+* Automatic memory pattern optim ?
+* Characterization: manual / auto ?
+* http://www.cs.huji.ac.il/project/maps/
+
+
+= Reproducible research =
+
+* Look Kepler, Chameleon
+* https://osf.io/
+* https://datahub.io/
+* http://researchcompendia.org/
+
+= VPA =
+
+== Laura von Rüden ==
+
+* Diminution de l'espace de recherche
+    * Eliminer visu sans interet
+    * Reconnaitre visualisation identiques
+        * Reconnait des classes connues (line, gradient, ...)
+* Appliquable a des traces MOCA ?
+
+
+== Second talk ? ==
+
+* Visu pour scheduler
+* Montrer ça a Raphaël
+
+== Benafsh Husain ==
+
+* Link between perf analysis and Visualization tools
+* Gimenez => MemAxes

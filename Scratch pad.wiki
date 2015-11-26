@@ -20,3 +20,21 @@ Voir Paul-Annick Davoine: visualization of spacio-temporal data
 * Distribution:
     * 1 line = one distribution
     * Color = intensity
+
+== Réunion ==
+
+* Exemple sur DOMJudge web interface
+    * Mettre exemples.in and .out dans sql et php liste problemes 
+* Makefile ordre copy => Guillaume
+* Filtres supprimer niveau 1
+
+== Methodo install DOMJudge ==
+
+* Besoin de fait `./dj_setup_db uninstall` ?
+* Comment updater en prod ?
+
+= Traces Moca =
+
+* Trace longue Tabarnac: 1h pas assez apparemment
+* Erreur script lancé hier => ça tourne
+

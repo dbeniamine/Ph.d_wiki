@@ -1,0 +1,16 @@
+* Administration campus:
+    * Fin retour mission POA
+    * Récupération Carte étu
+* Animation neveux Vania atelier manuel du numérique
+* Retour mission Austin:
+    * Hotel:    $364.27    343.58€
+    * Repas:    6*30€      180€
+    * Taxi:                200€
+    * Navette:             34,50€
+    * Total:               758.08€
+* Slides en ligne, papier lié depuis page github
+* mail Josefina
+    * utilisatrice TABARNAC (potentielle)
+    * application bioinformatics (mappers)
+    * Essaye de manuellement améliorer des perfs en jouant sur l'allocation
+    mémoire
