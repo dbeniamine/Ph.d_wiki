@@ -1,0 +1,40 @@
+= MOCA =
+
+== Traces ==
+
+* Generation de trace Sofa
+    * Depuis Naskapi
+    * Rapide / seulement 13M (vérifier taille)
+    * Contient beaucoup de vide => Refaire avec wakeup plus petit ?
+    * Pas lisible
+* Visu IS
+    * Un comportement temporel se dessine
+    * Au milieu (temps) peu de données accédées, beaucoup de "partage"
+
+== A faire ==
+
+Intégrer nom des structures:
+    * read elf on binary (bash ?)
+    * lib replace malloc
+
+= TABARNAC =
+
+* Fix remote detection
+    * get_tsc ne marche pas
+    * appel a sched_getcpu(), systemcall devrait être lourd mais apparement
+    pas ...
+        * relancer expe overhead ?
+    * numa_get_node_of_cpu incroyablement len (exec de 6sec prends 3minutes)
+        * Appelé juste au début de l'exec, utilisation d'un cache.
+* Ajouter plot remote
+* Trace Sofa
+    * Afficher une seule fois le warning `-g flag`
+    * Structures petites
+    * Desequilibre clair entre threads
+    * AnonymousStruct100,101,102 page très partagées
+    * First touch mauvais
+
+== A faire ==
+
+* Ajouter flag debug
+* Voir remote

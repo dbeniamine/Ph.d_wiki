@@ -1,0 +1,36 @@
+= Sofa =
+
+== TABARNAC ==
+
+* Tous mallocs sont anonymes malgrès compi debug
+    * Probablement matrices dans library algèbre utilisées ...
+* Utilisation intensive stack#0 (mais uniquement thread 0)
+* Attention au first touch
+* Globalement: accès intensif toujours aux mêmes pages
+* Solution facile: interleave
+
+= Pin =
+
+Overhead with struct only (time bad expe):
+
+| Tool | Sofa Quadratic Linear | Sofa LinearRigidAndAffine | IS.C | MG.C            |
+|------|-----------------------|---------------------------|------|-----------------|
+| Base | 8.0    (4.8 useful)   | 5.2  (2.2 useful)         | 2.6  | 21.2 (2.3 init) |
+| Pin  | 51     (13.8)         | 45.4 (7.5)                | 2.9  | 21.4 (4.4)      |
+| Pin2 | 52.0   (13.7s)        | 45.0 (7.4)                | 3.0  | 21.4 (4.4)      |
+| Pin3 | 47.5   (13.7)         | 41.0 (7.4)                | 3.1  | 21.3 (4.4)      |
+| Pin4 | 46.5   (13.0)         | 41.3 (7.4)                | 3.5  | 21.3 (2.6)      |
+
+
+* Overhead démesurée pour Sofa => malloc handler trop lourd ?
+* Pin2: Simplification de la recherche de nom: pas d'ouverture de fichier uniquement `fichier:ligne`
+* Pin3: ouvrir juste binaire principal
+* Pin4: Pas de malloc Rtn
+
+L'overhead semble liée au nombre de binaire utilisé (1 pour les NAS, beaucoup
+pour Sofa) plutôt qu'au nombre de mallocs ou a la detection des structures
+statique ... Ce résultat est logique cal il est nécessaire d'explorer chaque binaire pour inserer des appels autour du malloc.
+
+Autre méthode pour tracer les mallocs avec pin ?
+
+*Experience overhead complete Moca avec /sans pin NAS / Sofa: en cours sur naskapi

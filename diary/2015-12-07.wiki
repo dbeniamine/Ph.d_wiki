@@ -1,0 +1,62 @@
+= Resultats expe =
+
+Expe du week end => Naskapi a freeze
+
+* Pas mal de "bad page map" et self_sched dans les logs
+* Rien d'autre de choquant
+* Relancer expe en suivant => freeze sur cg.A
+    * cg.A a la main, même args => Ok
+* Toute Nas "a la main"
+    * sudo moca -P -G -c
+    * dc.A => Bad page map, pas de soucis d'exécution
+    * Tous les autres: ok !
+* Idem depuis shell root / sans option -P
+    * BT.A: Bad page map
+    * DC.A: No more chunks
+    * EP.A: Bad page map
+    * FT.A (lancé deux fois par erreur) NULL Pointeur:
+{{{
+Dec  7 15:44:36 naskapi kernel: [ 8181.855163] BUG: unable to handle kernel NULL pointer dereference at 000000000000000c
+Dec  7 15:44:36 naskapi kernel: [ 8181.855169] IP: [<ffffffff810e19fe>] valid_swaphandles+0x65/0xd5
+Dec  7 15:44:36 naskapi kernel: [ 8181.855178] PGD 43b400067 PUD 43b9e9067 PMD 0
+Dec  7 15:44:36 naskapi kernel: [ 8181.855181] Oops: 0000 [#1] SMP
+Dec  7 15:44:36 naskapi kernel: [ 8181.855183] CPU 3
+Dec  7 15:44:36 naskapi kernel: [ 8181.855184] Modules linked in: moca(O) fuse vtsspp(O) sep3_10(O) parport_pc ppdev lp parport bnep rfcomm bluetooth rfkill pax(O) binfmt_misc nfsd nfs nfs_acl auth_rpcgss fscache lockd sunrpc loop kvm_intel kvm snd_hda_codec_hdmi nvidia(P) snd_hda_codec_realtek coretemp crc32c_intel ghash_clmulni_intel aesni_intel aes_x86_64 aes_generic cryptd dcdbas psmouse pcspkr serio_raw evdev snd_hda_intel mperf snd_hda_codec snd_seq snd_hwdep snd_seq_device snd_pcm iTCO_wdt snd_page_alloc sb_edac iTCO_vendor_support snd_timer edac_core i2c_i801 snd i2c_core soundcore button processor thermal_sys ext4 crc16 jbd2 mbcache dm_mod sr_mod cdrom sg sd_mod crc_t10dif isci libsas xhci_hcd ahci libahci scsi_transport_sas ehci_hcd libata usbcore e1000e scsi_mod usb_common [last unloaded: moca]
+Dec  7 15:44:36 naskapi kernel: [ 8181.855223]
+Dec  7 15:44:36 naskapi kernel: [ 8181.855225] Pid: 13464, comm: egrep Tainted: P    B      O 3.2.0-4-amd64 #1 Debian 3.2.68-1+deb7u6 Dell Inc. Precision T3600/08HPGT
+Dec  7 15:44:36 naskapi kernel: [ 8181.855228] RIP: 0010:[<ffffffff810e19fe>]  [<ffffffff810e19fe>] valid_swaphandles+0x65/0xd5
+Dec  7 15:44:36 naskapi kernel: [ 8181.855231] RSP: 0000:ffff880434f6fd38  EFLAGS: 00010246
+Dec  7 15:44:36 naskapi kernel: [ 8181.855232] RAX: 0000000016131613 RBX: 000000000149eff0 RCX: 0000000000000003
+Dec  7 15:44:36 naskapi kernel: [ 8181.855234] RDX: 0000000000001613 RSI: ffff880434f6fd70 RDI: ffffffff817de270
+Dec  7 15:44:36 naskapi kernel: [ 8181.855235] RBP: 000000000149eff0 R08: 0000000000000000 R09: 0000000000000028
+Dec  7 15:44:36 naskapi kernel: [ 8181.855237] R10: 0000000000000246 R11: 0000000000000246 R12: 0000000000000000
+Dec  7 15:44:36 naskapi kernel: [ 8181.855238] R13: ffff880434f6fd70 R14: 000000000149eff8 R15: 00000000000200da
+Dec  7 15:44:36 naskapi kernel: [ 8181.855240] FS:  00007f7f136ef700(0000) GS:ffff88044f260000(0000) knlGS:0000000000000000
+Dec  7 15:44:36 naskapi kernel: [ 8181.855242] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+Dec  7 15:44:36 naskapi kernel: [ 8181.855243] CR2: 000000000000000c CR3: 0000000436d2c000 CR4: 00000000000406e0
+Dec  7 15:44:36 naskapi kernel: [ 8181.855245] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+Dec  7 15:44:36 naskapi kernel: [ 8181.855247] DR3: 0000000000000000 DR6: 00000000ffff0ff0 DR7: 0000000000000400
+Dec  7 15:44:36 naskapi kernel: [ 8181.855248] Process egrep (pid: 13464, threadinfo ffff880434f6e000, task ffff88030db3d1c0)
+Dec  7 15:44:36 naskapi kernel: [ 8181.855249] Stack:
+Dec  7 15:44:36 naskapi kernel: [ 8181.855250]  240000000149eff0 2400000000000000 0000000000405dd0 ffff88043ac516b8
+Dec  7 15:44:36 naskapi kernel: [ 8181.855253]  0000000000405dd0 ffffffff810df001 ffffffff810f545a ffff88043b6c1c00
+Dec  7 15:44:36 naskapi kernel: [ 8181.855256]  0000000000000001 ffff88043ac516b8 ffff88043b326028 0000000000405dd0
+Dec  7 15:44:36 naskapi kernel: [ 8181.855258] Call Trace:
+Dec  7 15:44:36 naskapi kernel: [ 8181.855261]  [<ffffffff810df001>] ? swapin_readahead+0x2f/0x9a
+Dec  7 15:44:36 naskapi kernel: [ 8181.855264]  [<ffffffff810f545a>] ? try_get_mem_cgroup_from_mm+0x28/0x32
+Dec  7 15:44:36 naskapi kernel: [ 8181.855267]  [<ffffffff810d1c48>] ? handle_pte_fault+0x35a/0x7b2
+Dec  7 15:44:36 naskapi kernel: [ 8181.855271]  [<ffffffffa0d97d00>] ? Moca_FixFalsePf+0x59/0x90 [moca]
+Dec  7 15:44:36 naskapi kernel: [ 8181.855274]  [<ffffffff810cf105>] ? pte_offset_kernel+0x16/0x35
+Dec  7 15:44:36 naskapi kernel: [ 8181.855277]  [<ffffffff81354273>] ? do_page_fault+0x320/0x345
+Dec  7 15:44:36 naskapi kernel: [ 8181.855280]  [<ffffffff810fb67c>] ? vfs_read+0xb8/0xe6
+Dec  7 15:44:36 naskapi kernel: [ 8181.855284]  [<ffffffff81351815>] ? page_fault+0x25/0x30
+Dec  7 15:44:36 naskapi kernel: [ 8181.855285] Code: 80 e2 7d 81 48 89 eb b8 01 00 00 00 48 d3 eb d3 e0 48 d3 e3 48 98 4c 8d 34 03 48 85 db b8 01 00 00 00 48 0f 44 d8 e8 1d f8 26 00 <41> 8b 44 24 0c 48 89 ea 49 39 c6 4c 0f 47 f0 eb 14 49 8b 4c 24
+Dec  7 15:44:36 naskapi kernel: [ 8181.855305] RIP  [<ffffffff810e19fe>] valid_swaphandles+0x65/0xd5
+Dec  7 15:44:36 naskapi kernel: [ 8181.855308]  RSP <ffff880434f6fd38>
+Dec  7 15:44:36 naskapi kernel: [ 8181.855309] CR2: 000000000000000c
+Dec  7 15:44:36 naskapi kernel: [ 8181.855311] ---[ end trace 231438b23797f46f ]---
+
+}}}
+
+On dirait un problème a l'init => retour de hashmap Init non testé fixé, voir
+ce que ça donne.

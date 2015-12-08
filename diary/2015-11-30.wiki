@@ -1,0 +1,44 @@
+= TABARNAC =
+
+== Objectif ==
+
+
+Nouveau fichier exp.numa.csv qui liste le nombre d'accès distant par page:
+
+{{{
+    Addr,Noeud,N0,N1,N2,N3
+}}}
+
+
+Les pages peuvent bouger !
+* Soit vérifier position de la page a chaque fois, lourd ?
+* Soit tracer les mouvements de page
+    * Un cache indique ou est la page
+    * Quel syscall ?
+        * `migrate_pages`
+        * `move_pages`
+* CPU courant déjà connu: get_tsc
+
+=== Autre idée ===
+
+Tracer indépendamment accès distant, on obtient une trace de type:
+
+{{{
+    Addr,N0,N1,N2,N3
+}}}
+
+Qui indique le nombre d'accès distant depuis chaque noeud a une page
+
+== Trucs techniques ==
+
+* Use libnuma for location of accessed address
+    * `move_page()` can return current position
+    * `get_mempolicy()`
+* Reprendre métrics papier Matthias
+
+
+== Discussion Matthias ==
+
+* Supposer first touch
+* Lire fichier mapping
+* Et pour les threads ?

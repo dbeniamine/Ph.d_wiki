@@ -1,0 +1,20 @@
+= Sofa =
+
+== Moca ==
+
+* Inutilisable besoin de limites / noms structures
+* Noms structures
+    * Hors instrumentation: soucis accès au binaires ?
+    * Dynamic possibilité d'utiliser gdb
+    * Re run avec pin et sans randomisation d'espace mémoire pour récuperer
+    les structures
+
+== Tabarnac ==
+
+* Quelques structures importantes
+* Ajouter une possibilité de filtre: uniquement structures a plus de x access
+
+
+== Guillaume ==
+
+* Pin direct surcout ?

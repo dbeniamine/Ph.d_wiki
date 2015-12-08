@@ -1,0 +1,27 @@
+= Moca =
+
+Retour sur les expériences du week-end: on voyait des `Bad page map` dans les
+logs. Au bout de quelques expériences, la machine freeze. La trace extraite
+hier indique un `NULL pointer` suite a un malloc qui plante a
+l'initialisation. La modification de l'init pour mieux tester les mallocs
+d'hier n'avait pas été testé sur machine (`git pull` oublié).
+
+Malgrès cette modification le freeze réaparait.
+
+En relançant moca (`moca -G -c`, toute NAS + Sofa) avec des `sleep 10` entre
+chaque appel on voit d'autres erreurs, toujours le même principe un malloc
+plante qui entraine un `Moca_Panic`. Cette routine est trop générique, on ne
+sait rien de l'état du système et donc la plupart du temps on finit par faire
+un `NULL pointer dereference` on une`int3`.
+
+Solution: suppression totale de `Moca_Panic` pour remonter proprement les
+erreurs + `printk` au besoin.
+
+Ce débug permet aussi de voir que l'appel à `Moca_ClearFalsePfData()` est
+commenté ce qui génère une grosse fuite mémoire d'où les mallocs qui
+retournent `NULL`.
+
+Les modifications sont en cours de test sur naskapi.
+
+Reste à comprendre pourquoi certains faux défauts de pages ne sont pas
+reconnus ...

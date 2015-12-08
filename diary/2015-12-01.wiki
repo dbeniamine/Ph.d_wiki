@@ -1,0 +1,30 @@
+= MWEToolkit =
+
+== Ordre des accès ==
+
+* 1 phrase = 1 chunk
+    * ID = position dans le chunk
+    * FORM / LEMMA addresse avec eventuellement flag 'w'
+    * CPOSTAG/POSTAG => Ignore
+    * FEAS => ignore
+    * HEAD => 0
+    * DEPREL => ROOT
+    * PHEAD => 0
+    * PDEPREL => ROOT
+* Limite => pas de pattern inter thread (chunk séparés)
+* Linéariser les chunks ?
+    * Fusion des chunks indépendamment des clocks: *pas realiste !*
+    * Fusion par continuité d'horloge: *risque 1 gros chunk*
+    * Autre solution
+        * Donner un ID (non unique) a chaque accès: `start_clock+pos`
+        * Grouper par 500 ou 1000 accès
+        * Re numéroter de manière unique ensuite
+
+== Forme du corpus ==
+
+* Uniquement addresse
+    * peu de méta données
+    * *Notion de thread perdu* !
+* Forme textuelle "ThreadId lit addr"
+    * *Lourd (3 lignes par accès)*
+    * Plus proche de l'idée initiale de mwetoolkit
