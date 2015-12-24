@@ -1,0 +1,191 @@
+= Sofa =
+
+Utiliser `runSofad` et non `runSofa` apparement comportement different, mais
+toujours trop de structure anonymes, comparer traces ...
+
+= Moca =
+
+Pas mal de debug, quelques soucis au niveau de l'allocation d'une task,
+réparé.
+
+Toujours un bug qui réaparrait soit sous la forme d'`int3`, soit avec des `BAD
+page map`. Dans le deuxième cas on voit dans les logs que la page est
+correctement ajoutée (avec `pte clear`), puis trouvé cependant non fixée
+(status mauvais alors que non modifié explicitement). Il s'agit donc peut être d'un
+seul et même bug du à une écriture qui dépasse (vraisemblablement dans un
+jprobe, vu que l'`int3` est toujours sur un `jprobe_return_end()`).
+
+== Bad page map ==
+
+=== Problème ===
+
+L'addresse est ajoutée deux fois, la deuxième elle n'est pas en "already in
+map".
+
+{{{
+Dec 11 13:43:45 localhost kernel: [  132.005121] Moca Added false PF 7fbacccd4678 ffff8800ba734480 at 74/75 st:0
+...
+Dec 11 13:43:45 localhost kernel: [  132.013142] Moca testing addr fault 7fbacccd4268 mm ffff8800ba734480
+Dec 11 13:43:45 localhost kernel: [  132.013143] Moca found false pf 00007fbacccd4000 mm ffff8800ba734480
+Dec 11 13:43:45 localhost kernel: [  132.013144] Moca fixing false pf 00007fbacccd4000 mm ffff8800ba734480
+Dec 11 13:43:45 localhost kernel: [  132.013145] Moca fixed false pf 00007fbacccd4000 mm ffff8800ba734480
+Dec 11 13:43:45 localhost kernel: [  132.013146] Moca done addr fault 7fbacccd4268 mm ffff8800ba734480
+....
+Dec 11 13:43:45 localhost kernel: [  132.336166] Moca Added false PF 7fbacccd4268 ffff8800ba734480 at 164/165 st:0
+...
+Dec 11 13:43:45 localhost kernel: [  132.337744] Moca testing addr fault 7fbacccd4668 mm ffff8800ba734480
+Dec 11 13:43:45 localhost kernel: [  132.337749] Moca found false pf 00007fbacccd4000 mm ffff8800ba734480
+Dec 11 13:43:45 localhost kernel: [  132.337754] Moca done addr fault 7fbacccd4668 mm ffff8800ba734480
+Dec 11 13:43:45 localhost kernel: [  132.337760] Moca Added false PF 978000 ffff8800ba734480 at 486/487 st:0
+Dec 11 13:43:45 localhost kernel: [  132.337761] BUG: Bad page map in process bt.A  pte:8000000137a48866 pmd:13a750067
+Dec 11 13:43:45 localhost kernel: [  132.337764] addr:00007fbacccd4668 vm_flags:08100073 anon_vma:ffff8800b96c6c68 mapping:ffff8800ba3ec9e8 index:15
+Dec 11 13:43:45 localhost kernel: [  132.337770] vma->vm_ops->fault: filemap_fault+0x0/0x420
+Dec 11 13:43:45 localhost kernel: [  132.337780] vma->vm_file->f_op->mmap: ext4_file_mmap+0x0/0x60 [ext4]
+Dec 11 13:43:45 localhost kernel: [  132.337787] Moca Added false PF 979000 ffff8800ba734480 at 487/488 st:0
+Dec 11 13:43:45 localhost kernel: [  132.337793] CPU: 3 PID: 1811 Comm: bt.A Tainted: G           O  3.16.0-4-amd64 #1 Debian 3.16.7-ckt11-1
+Dec 11 13:43:45 localhost kernel: [  132.337794] Moca Added false PF 97a000 ffff8800ba734480 at 488/489 st:0
+Dec 11 13:43:45 localhost kernel: [  132.337798] Moca Added false PF 97b000 ffff8800ba734480 at 489/490 st:0
+Dec 11 13:43:45 localhost kernel: [  132.337800] Moca Added false PF 97c000 ffff8800ba734480 at 490/491 st:0
+Dec 11 13:43:45 localhost kernel: [  132.337803] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS Debian-1.8.2-1 04/01/2014
+Dec 11 13:43:45 localhost kernel: [  132.337804]  ffff88007fe55cd8 ffffffff8150b405 00007fbacccd4668
+Dec 11 13:43:45 localhost kernel: [  132.337810] Moca Added false PF 97d000 ffff8800ba734480 at 491/492 st:0
+Dec 11 13:43:45 localhost kernel: [  132.337813] Moca Added false PF 97e000 ffff8800ba734480 at 492/493 st:0
+Dec 11 13:43:45 localhost kernel: [  132.337816] Moca Added false PF 97f000 ffff8800ba734480 at 493/494 st:0
+Dec 11 13:43:45 localhost kernel: [  132.337818]  ffffffff811653d0
+Dec 11 13:43:45 localhost kernel: [  132.337819]  8000000137a48866 00007fbacccd4668 0000000000000002
+Dec 11 13:43:45 localhost kernel: [  132.337824] Moca Added false PF 980000 ffff8800ba734480 at 494/495 st:0
+Dec 11 13:43:45 localhost kernel: [  132.337827] Moca Added false PF 981000 ffff8800ba734480 at 495/496 st:0
+Dec 11 13:43:45 localhost kernel: [  132.337831] Moca Added false PF 982000 ffff8800ba734480 at 496/497 st:0
+Dec 11 13:43:45 localhost kernel: [  132.337832]  ffff88013a784330
+Dec 11 13:43:45 localhost kernel: [  132.337833]  0000000000000080 ffff88007fe55cd8 ffff8800ba734480 ffffffff8116a066
+Dec 11 13:43:45 localhost kernel: [  132.337839] Moca Added false PF 983000 ffff8800ba734480 at 497/498 st:0
+Dec 11 13:43:45 localhost kernel: [  132.337843] Moca Added false PF 984000 ffff8800ba734480 at 498/499 st:0
+Dec 11 13:43:45 localhost kernel: [  132.337846] Moca Added false PF 985000 ffff8800ba734480 at 499/500 st:0
+Dec 11 13:43:45 localhost kernel: [  132.337847] 
+Dec 11 13:43:45 localhost kernel: [  132.337849] Call Trace:
+Dec 11 13:43:45 localhost kernel: [  132.337855]  [<ffffffff8150b405>] ? dump_stack+0x41/0x51
+Dec 11 13:43:45 localhost kernel: [  132.337856] Moca Added false PF 986000 ffff8800ba734480 at 500/501 st:0
+Dec 11 13:43:45 localhost kernel: [  132.337860] Moca Added false PF 987000 ffff8800ba734480 at 501/502 st:0
+Dec 11 13:43:45 localhost kernel: [  132.337863] Moca Added false PF 988000 ffff8800ba734480 at 502/503 st:0
+Dec 11 13:43:45 localhost kernel: [  132.337867]  [<ffffffff811653d0>] ? print_bad_pte+0x1a0/0x250
+Dec 11 13:43:45 localhost kernel: [  132.337870]  [<ffffffff8116a066>] ? handle_mm_fault+0x1166/0x11c0
+Dec 11 13:43:45 localhost kernel: [  132.337874] Moca Added false PF 989000 ffff8800ba734480 at 503/504 st:0
+Dec 11 13:43:45 localhost kernel: [  132.337878]  [<ffffffffa028b25c>] ? Moca_FixFalsePf+0x9c/0x110 [moca]
+Dec 11 13:43:45 localhost kernel: [  132.337883]  [<ffffffff810572b7>] ? __do_page_fault+0x177/0x4f0
+Dec 11 13:43:45 localhost kernel: [  132.337886] Moca Added false PF 98a000 ffff8800ba734480 at 504/505 st:0
+Dec 11 13:43:45 localhost kernel: [  132.337890]  [<ffffffff8109cee7>] ? put_prev_entity+0x57/0x350
+Dec 11 13:43:45 localhost kernel: [  132.337890] Moca Added false PF 98b000 ffff8800ba734480 at 505/506 st:0
+Dec 11 13:43:45 localhost kernel: [  132.337894]  [<ffffffff8109bd56>] ? set_next_entity+0x56/0x70
+Dec 11 13:43:45 localhost kernel: [  132.337895] Moca Added false PF 98c000 ffff8800ba734480 at 506/507 st:0
+Dec 11 13:43:45 localhost kernel: [  132.337898]  [<ffffffff810a2b31>] ? pick_next_task_fair+0x6e1/0x820
+Dec 11 13:43:45 localhost kernel: [  132.337898] Moca Added false PF 98d000 ffff8800ba734480 at 507/508 st:0
+Dec 11 13:43:45 localhost kernel: [  132.337903]  [<ffffffff810115dc>] ? __switch_to+0x15c/0x570
+Dec 11 13:43:45 localhost kernel: [  132.337904] Moca Added false PF 98e000 ffff8800ba734480 at 508/509 st:0
+Dec 11 13:43:45 localhost kernel: [  132.337908]  [<ffffffff81513618>] ? async_page_fault+0x28/0x30
+Dec 11 13:43:45 localhost kernel: [  132.337909] Moca Added false PF 98f000 ffff8800ba734480 at 509/510 st:0
+Dec 11 13:43:45 localhost kernel: [  132.337911] Disabling lock debugging due to kernel taint
+
+
+}}}
+
+
+Effectivement, jamais de already in map => tmpPf jamais initialisé avec mm le
+comparateur ne peux pas reconnaitre les doublons
+
+A priori ça n'a rien a voir avec l'`int3` et n'apporte aucune information ...
+
+=== Résultat ===
+
+Après cette modification: plus d'`int3` (peu de tests, a vérifier), toujours
+un `BAD page map` mais différent. Cette fois l'addresses apparait de nombreuse
+fois a chaque fois bien trouvée puis supprimée. Le bug apparait 2 secondes
+après le dernier fix, sans que le pte ai été (volontairement) modifié par Moca
+(aucun autre `AddFalsePf` entre temps d'ailleurs). Peut être une race de ce
+type:
+{{{
+    Linux read pte
+    Moca read pte
+    Moca set pte
+    Linux set pte
+}}}
+Ainsi linux remet le pte avec le flag absent ...
+
+Remise des ptl => freeze de la VM, petites rectifications
+
+`Bug BAD page map` au premier fix:
+Moca_FixFalsePf+0x9c
+
+Trace étange, un test, un ajout direct et bug, ajouter a recerntly fixed tous
+les default de page même non fixé pourrait faire l'affaire
+
+IS => Plusieurs run ok, `int3 jprobe_retun_end` au milieu d'une série d'ajouts
+de falsepf. Due a une famine pour les défauts de page ?
+
+Reesayer fair RWlocks ? code depuis `david/debug-int3`
+* Reboot de la VM
+* Pas de logs
+
+Tout en write_lock:
+* 1er test: freeze
+* 2em test:
+    * is ok x3
+    * Bug pendant loop: cat no more space on device puis freeze
+* 3em freeze
+
+Le problème n'est clairement pas lié a l'ordonnancement des threads. Il ne
+s'agit pas non plus d'une race condition.
+
+=== Test Exit handler ===
+
+Exit handler vide:
+* Attente: Soit le bug persiste, soit il n'y à "que" des BAD page map a la
+fin, et on en sait plus ... 
+    * IS: OK
+    * IS 2em fois: OK
+    * Lancement de la suite: freeze sur BT.A
+
+Conclusion: le problème ne vient pas du exit handler
+
+=== Version hack ===
+
+Au passage detect double initialisation rwlock ...
+
+IS 1er coup: Freeze
+
+Soucis dans les task_data ???
+Revenir sur simulateur !
+
+=== Simulateur ===
+
+* Pas d'erreur détectées **Faire varier params**
+* Mem leak interne continuer par là
+* Rien ne ressort ...
+
+
+=== Dimanche ===
+
+Version actuelle, selon le hasard:
+
+* Freeze aleatoire (après plusieurs lancement de IS.A)
+    Au reboot, la VM fonctionne, aucune trace dans `/var/log/kern.log` du
+    dernier run de MOCA
+* Fork assertion fail
+
+Soucis toujours rapidement après lancement de MOCA.
+
+Mettre un seep 10*Moca_wakeupinterval pour le monitor thread semble fixer le
+soucis pour is.
+* Tout semble ok en VM, test insufisant: pas assez de disque pour DC.A.
+* Naskapi: Freeze sur ep.A .
+
+Suppression du sleep initial, ainsi que de l'appel a `AddFalsePf` => ça bug
+toujours.
+`jprobe` completement commentés => Ok
+Décomenter tout sauf ̀`FixFalsePf` => KO
+re commenter  ̀̀`AddToChunk` => KO
+Test Moca_PosInMap return in GetData => Freeze deuxième loop cg.A
+Supprimer traces => OK
+
+Tout on sauf flush data => OK !
+Dans flush décommenter uniquement PDEDATA => BUG !
+

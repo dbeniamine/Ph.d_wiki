@@ -1,34 +1,64 @@
-= Tal ? Memory access paterns Tueday afternoon =
+= Retour SC'15 =
 
-* Automatic memory pattern optim ?
-* Characterization: manual / auto ?
-* http://www.cs.huji.ac.il/project/maps/
+== Memoire ==
 
+=== GPU ===
 
-= Reproducible research =
+* Tal Ben-Nun Memory access paterns (GPU)
+    * Automatic memory pattern optim
+    * Specify access as a pattern and generate automatized code
+    * http://www.cs.huji.ac.il/project/maps/
+
+=== CPU ===
+
+* Liu: Identify Memory scalability bottlenecks (paper, Williamsburg)
+* Husain: Relating Memory Perf to data application domain (workshop VPA, LLNL
+/ MemAxes)
+* Lot of people interested on memory analysis (discussion off)
+
+== VPA ==
+
+Trend: mapping performances on data domain:
+
+* Hussain: Memory + domain
+* 2 papers for scheduling: mapping performances on DAG
+* Von Rüden: Cube + Find interesting part of visu
+    * Reduce research space
+    * Remove low information visu
+    * Recognize identical views
+        * Use known patterns
+
+= Reproductible =
+
+== BOF ==
+
+Helmar Burkart (Univ of Basel) Gerhard Wellein (Univ of Erlangen-Nuremberg)
+
+* Room was full
+* Several definition of reproducibility
+* Importance of reproducibility / ability to compare and discuss a paper results
+* Several people presented weird behavior that they saw to explain how hard
+reproducibility is
+
+== Invited talk ==
+
+Victoria stodden
+Overview of tools methods and why do reproducible
 
 * Look Kepler, Chameleon
 * https://osf.io/
 * https://datahub.io/
 * http://researchcompendia.org/
 
-= VPA =
+= Women in HPC =
 
-== Laura von Rüden ==
-
-* Diminution de l'espace de recherche
-    * Eliminer visu sans interet
-    * Reconnaitre visualisation identiques
-        * Reconnait des classes connues (line, gradient, ...)
-* Appliquable a des traces MOCA ?
-
-
-== Second talk ? ==
-
-* Visu pour scheduler
-* Montrer ça a Raphaël
-
-== Benafsh Husain ==
-
-* Link between perf analysis and Visualization tools
-* Gimenez => MemAxes
+* BOF + Workshop (sadly same time as VPA)
+* Very interesting discussion on
+    * How to make job proposition more inclusive
+    * Know our biais before going to a jury
+    * Impostor syndrome
+* Statistics from Argonne
+    * Lot of diversity in post doc / doctorants
+    * Permanent are all white males
+    * What about us ?!
+* Women in HPC are on FB, linkedin everywhere take one minute

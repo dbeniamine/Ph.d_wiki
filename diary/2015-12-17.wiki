@@ -1,0 +1,9 @@
+= Moca =
+
+Trace trop petites
+Erreur dans ClearFalsePf => test `!pte_present(*pte)` au lieu de l'inverse ...
+En remettant ça: retour du bug au démarage, un `msleep(200)` au début du
+monitor thread semble regler le soucis. Le problème semble se produire si on
+marque absent une page durant l'initialisation d'un thread/processus. Une
+solution plus propre serait d'ignorer une tache la première fois qu'elle est
+découverte par le monitor thread et ça marche !

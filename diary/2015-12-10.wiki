@@ -1,0 +1,35 @@
+= Reu Guillaume =
+
+== TABARNAC ==
+
+* Compter Nacc remote par noeud et non par thread.
+* Dumper migration de pages Old,New,Thread detecting, Nacc
+* Visu: Remoteness of accesses to page = fct(Node that contains page)
+
+== Sofa ==
+
+Mail matthieu nesme !
+
+Verifier compi Sofa en cours avant
+
+= MOCA =
+
+* Bad page map semble random, plus il yen a plus il y en a.
+* Recupererpte a partir de p->mm et vma->vm_mm pour décider si fix
+* Regarder cote unmap_vmas cf backtrace papier (recopier ici)
+
+
+En VM, `int3` direct bt.A (pas toujours) avec version `fe502f89de0770ace6e73ed4d9baba9ac38e6ca4` (More cleaning on exit)
+
+3* BT.A sans soucis (VM toujours) avec `5415d3515bce0dafa5eafa3e2a8e994f58291a50`
+lancement de la suite .A avec cette config:
+* BT => Ok
+* BT.A.x => Self sched après suppression des `*.x` puis bug
+
+Relancement de l'expé sans `*.x`
+
+* BT => OK
+* CG => INT3 un peu après démarrage
+
+
+Re verifier l'état des mallocs ...

@@ -1,0 +1,43 @@
+= Expe g5k =
+
+Resultat partiels:
+* Beaucoup de variabilité sur les résultats Moca: du au nombre de machines
+utilisées ?
+* Tabarnac branche dev: slowdown factor > 2000
+    * A priori ok sur la branche master
+
+= Paper Moca =
+
+== Abstract ==
+
+    Abstracts are not introductions; abstracts are summaries for experts. Delete
+    the first three paragraphs of the abstract; they belong in the introduction
+    (and already are). Instead expand the fourth paragraph.
+
+== Biblio ==
+
+    H. Boehm, A. Demers, S. Schenker.
+    Mostly parallel garbage collection.
+    ACM PLDI 91, pp. 157-164 (1991)
+
+    J. HEO, S. YI, Y. CHO, J. HONG.
+    Space-Efficient Page-Level Incremental Checkpointing.
+    Journal of Information Science and Engineering, Vol. 22 No. 2, pp. 237-246 (2006)
+
+== Methodo ==
+
+* Number of cores ?
+* Fig 3 log scale ?
+* `\usepackage{siunitx}` `\SI{24}{GB}`
+
+== Discussion ==
+
+* Cache optim
+* Study case
+
+== Prochaine version ==
+
+HPDC http://www.hpdc.org/2016/papers/call-for-papers/
+
+* Abstract 2016-01-11
+* Full 2016-01-18

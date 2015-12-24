@@ -1,0 +1,24 @@
+= Moca =
+
+== Fin résolution BUG Flush data ==
+
+* Problème original: utilisation d'un fichier /proc par task => fail
+* Resolu en faisant un fichier global
+* Ce matin bug: "No more chunk" => Chunk vide pas remis en état normal lors du
+flush
+* Quelques autres soucis de deadlock reglés aussi
+
+== Todo ==
+
+* Tester Addr Phy => OK
+* Supprimer break dans ClearData si inutile
+* Verif taille traces
+
+== Experiences ==
+
+* G5K => Refaire expés IPDPS
+    * 8 nœuds réservés pour lundi 21, pas de place avant
+    * Idem dimanche 20
+* Naskapi => Vérifier Sofa + Pin
+    * KO, problème sur la machine ?
+    * Essayer sur autre machine digitalis

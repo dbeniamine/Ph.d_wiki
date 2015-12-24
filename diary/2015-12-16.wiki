@@ -1,0 +1,57 @@
+= Expe =
+
+Resultats: [[file:~/Work/Traces/Moca/Moca-Pin-edel-60.grenoble.grid5000.fr_151215_1628/analyse_nas.html|analyse]]
+* 8 runs toutes benchs
+* 1 Soft lockup:
+    * Moca-dc.A run-31 (== run 1)
+        {{{
+            Moca_AddToMap+0xb2`
+            Moca_AddFalsePf+0x7f`
+        }}}
+* Resultats partiellement perdu par erreur, attendre fin maintenance
+* Moins d'evenement que `expe_ipdps`
+    * Utilisation de `ptl` => moins de parallelisme ?
+        * 0.4% d'ecart en retirant les `ptl` pour `bt.A` sur
+        `naskapi`.
+    * `pte_special` évités (semble plus probable)
+        * 0.2% d'ecart en remettant les `pte_special` pour `bt.A` sur
+        `naskapi`.
+
+Le nombre de pages trouvées avec Pin est plus proche du nombre de pages
+réelles ipdps: on doit louper la tache 0 avec moca actuel
+
+= A faire pour la prochaine expe =
+
+* Ajouter sofa ou benchmark plus complexe (voir etat naskapi ?)
+* Prendre en compte `pte_special` ? (faire test VM, voir difference trace)
+* Ignorer process pin ?
+    * utiliser ̀`t->comm` ?
+        * Verifier task [moca]
+            * Pas bon on trace aussi le script de lancement !
+        * Execution normale:
+           {{{
+            Moca Adding task ffff88043c24b8c0 [moca]
+            Moca Adding task ffff880438871080 [bt.A]
+            Moca Adding task ffff880438871780 [bt.A]
+            Moca Adding task ffff880435673080 [bt.A]
+            }}}
+        * execution pin:
+            {{{
+            Moca Adding task ffff88043d4ad080 [moca]
+            Moca Adding task ffff880439d9c780 [pin]
+            Moca Adding task ffff880439e48040 [sh]
+            Moca Adding task ffff88043b254880 [sh]
+            Moca Adding task ffff880439d3b180 [sh]
+            Moca Adding task ffff88043d4ad780 [pinbin]
+            Moca Adding task ffff88043ed20140 [pinbin]
+            Moca Adding task ffff88043b040080 [bt.A]
+            Moca Adding task ffff88043491d7c0 [bt.A]
+            Moca Adding task ffff880435673080 [bt.A]
+            }}}
+    * Pin ne lance pas le programme => hierarchie de tache plate, il suffit
+    d'ignorer les tâches pin.
+
+Il reste du bruit car ce sont les taches monitorés qui effectuent le travail
+pin ...
+
+
