@@ -4,7 +4,7 @@
 
 * [[Moca]]
 * [[Tabarnac]]
-* [[diary/diary|Journal]]
+* [[diary/diary|Diary]]
 * [[Soctrace/index|Soctrace]]
 * [[Bibliography]]
 * [[Teachings]]

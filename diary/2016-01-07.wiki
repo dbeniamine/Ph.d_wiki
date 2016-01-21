@@ -1,0 +1,11 @@
+= MemProf =
+
+* Remove buggy `LD_PRELOAD` only needed for mallocs
+* Set frequency to `0xFFFF0` => enough
+* Do parsing / How ?
+* Do script with test hostname idfreeze
+
+= Mitos =
+
+* Essayer `0X13B`
+* Reecrire paragraphe PEBS/IBS

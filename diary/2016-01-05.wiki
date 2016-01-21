@@ -1,0 +1,76 @@
+= Expes =
+
+== Resultats Adonis / Edel ==
+
+* Script mis a jour
+* mg étrange: grosse différen Moca / MocaPin
+    * Randomiser run
+    * Faire plus de runs
+
+== MemProf ==
+
+* Fix `0x8FFF0`
+    * ok pour is.A
+    * Freeze dc.A
+    {{{
+    root@idfreeze:/tmp# MemProf/scripts/profile_app.sh NPB3.3-OMP/bin/dc.A
+    rm: cannot remove ‘/tmp/data.raw.*’: No such file or directory
+    
+    
+     NAS Parallel Benchmarks (NPB3.3-OMP) - DC Benchmark
+    
+     No Paramter file. Using compiled defaults
+    ********************* ADC paramters
+     id		0
+     attributes 	15
+     measures   	1
+     tuples     	1000000
+     class		A
+     filename       ADC
+    ***********************************
+    
+    GenerateADC: writing 1000000 tuples of 15 attributes and 1 measures to ADC.dat.0
+    Prime 	Generator 	Seed
+     421	 16		 211
+     601	 151		 301
+     631	 98		 316
+     701	 581		 351
+     883	 729		 442
+     419	 334		 210
+     443	 123		 222
+     647	 300		 324
+     21737	 14249		 10869
+     31769	 21291		 15885
+     1427	 489		 714
+     18353	 8936		 9177
+     22817	 4767		 11409
+     34337	 6733		 17169
+     98717	 14136		 49359
+    Binary ADC file ADC.dat.0 have been generated.
+    
+    
+    CalculateVeiwSizes: Can't open file: ADC.view.sz.0
+    Estimated rb-tree size = 125000000 
+    
+    Number of available threads:  48
+    AdcFileOpen: Cannot open the file ADC.logf.0.0 errno = 30
+    AdcFileOpen: Cannot open the file ADC.view.dat.0.0 errno = 30
+    AdcFileOpen: Cannot open the file ADC.chunks.dat.0.0 errno = 30
+    AdcFileOpen: Cannot open the file ADC.groupby.dat.0.0 errno = 30
+    AdcFileOpen: Cannot open the file ADC.view.sz.0 errno = 2
+    DC.NewAdcViewCntl: return code = 4
+    MemProf/scripts/profile_app.sh: line 13:  2511 Segmentation fault      env LD_PRELOAD=$MEMPROF_PATH/library/ldlib.so $@
+    MemProf/scripts/profile_app.sh: line 16: ibs.raw: Read-only file system
+    MemProf/scripts/profile_app.sh: line 17: perf.raw: Read-only file system
+    MemProf/scripts/profile_app.sh: line 18: kallsyms.raw: Read-only file system
+    
+    Write failed: Broken pipe
+    }}}
+
+== Mitos ==
+
+* Fix 0x100B
+    * Ok  for `is.A`
+    * OK `dc.A`
+    * Loop all NAS 
+* parsing ?

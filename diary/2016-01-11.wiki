@@ -1,0 +1,14 @@
+= Expes hpdc =
+
+== NAS ==
+
+* Not all runs done
+    * Redo old technique to keep same number of runs + use several machines
+    * Do reservation for this week end
+* Param: ok / curves updated
+
+= MemProf =
+
+* Sample rate `0x1FFFF0̀` seems ok
+* Test run in progress
+* Do parsing scripts
