@@ -108,3 +108,6 @@ deux exécutions séparées.
 * Voir JMV
 * VIPS parsec
 * Bench papier Vetter et al.
+=======
+* [[HPDC]]
+* [[IPDPS]]

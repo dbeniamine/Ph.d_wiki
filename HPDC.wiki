@@ -1,0 +1,24 @@
+= Paper =
+
+= Experiments =
+
+== Param ==
+
+* Test Moca+Pin
+* verif script
+* Run to check defaults: **running**
+
+== NAS ==
+
+* Two experiments:
+    * Edel: Moca/MocaPin/Tabarnac/Mitos
+        * Intel => Native perfs for Moca+Pin and Tabarnac
+        * Mitos: issue reported **waiting**
+        * Verif test without mitos results on osage ...
+    * Idfreeze: Moca/MocaPin/MemProf
+        * AMD => Moca+Pin slower than on Intel
+        * MemProf:
+            * Conflict on library for parsing.
+            * Test parsing on different traces
+                * is.A => **CPU stuck, connection lost ...**
+                    *  Essayer kareboot3 / lire log et faire bug report
