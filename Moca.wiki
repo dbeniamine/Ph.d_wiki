@@ -1,5 +1,8 @@
 = Moca =
 
+* [[IPDPS]]
+* [[HPDC]] Initial expe preparation
+
 == HPDC ==
 
 === Urgent ===
@@ -108,6 +111,3 @@ deux exécutions séparées.
 * Voir JMV
 * VIPS parsec
 * Bench papier Vetter et al.
-=======
-* [[HPDC]]
-* [[IPDPS]]
