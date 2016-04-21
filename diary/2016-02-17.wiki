@@ -1,0 +1,63 @@
+= Traces Moca =
+
+== Matrices ==
+
+* modulo 1000x1000 / 4th:
+    * 40M avant post traitement
+    * 5.6Gio après
+    * Import Framesoc très lent (refaire)
+* bloc 1500x1500 / 4th:
+    * 94M avant
+    * 218M après
+    * Import rapide, première visu + re run
+        * Tout lague après. Selection plusieurs minutes
+    * Envoyé à Lucas
+    * Export pj_dump ?
+        {{{
+            17/02/16 14:54 ✔ david@osage:~/Work/Traces/Moca/Moca-matrix-bloc
+            $ grep ^Variable Moca_matrix_bloc_20160217_Virt.pjdump | awk -F, '{print "State,"$2","$3","$4","$5","$6",0,"$7}' > Moca_matrix_bloc_20160217_Virt_State.pjdump 
+            17/02/16 14:55 ✔ david@osage:~/Work/Traces/Moca/Moca-matrix-bloc
+            $ ~/install/pajeng/bin/pj_gantt Moca_matrix_bloc_20160217_Virt_State.pjdump 
+            Error in seq.default(from = best$lmin, to = best$lmax, by = best$lstep) : 
+              'from' must be of length 1
+            Calls: print ... f -> <Anonymous> -> <Anonymous> -> seq -> seq.default
+            Execution halted
+        }}}
+    * Lucas propose:
+        {{{
+        grep ^Variable Moca_matrix_bloc_20160217_Virt.pjdump | awk -F, '{print "State,"$2",access,"$4","$5","$6",0,"$3}' > states
+        }}}
+        * Visu en R (pas de pj_gantt du coup):
+            [[vfile:/home/david/Work/Traces/Moca/Moca-matrix-bloc/test.rmd]]
+        * Résultat:
+            [[file:/home/david/Work/Traces/Moca/Moca-matrix-bloc/test.html]]
+        * Problèmes:
+            * Pas interactif
+            * Hierarchie manquante ("facile" a reconstruire, si on veux
+              insister sur R).
+        * Idées:
+            * Essayer R-shiny en attendant que framesoc / ocelotl soit fixé ?
+            * Travailler directement sur trace csv ?
+            * Reprendre code Tabarnac
+
+*Attention :* le code de Lucas montre une erreur sur le parser framesoc:
+TODO:
+    * [X] FIX
+       * [X] Timestamps non mis a jour au l'affichage
+       * [X] Lignes dupliquées: Accès qui devraient être fusionnés
+    * [X] Regenerer traces:
+        * [X] matrix bloc
+        * [X] matrix modulo
+        * [X] is
+        * [X] bt
+    * [.] Re import on framesoc
+        * [X] matrix bloc
+        * [ ] matrix modulo
+        * [ ] is
+        * [ ] bt
+    * [X] Regenerate visu Lucas
+    * [X] Resend trace Lucas
+
+== Framesoc ==
+
+Youenn a pushé une FIX a tester.

@@ -1,0 +1,9 @@
+* Wiki reorganisation
+* Lucas:
+    * Install Emacs + evil + orgmode
+    * [ ] FIX accesses with negative address
+        * Testing on [[file:../../Traces/Moca/Moca-matrix-bloc-fixaddr]]
+        * End time < Start time in
+          [[vfile:../../Traces/Moca/Moca-matrix-bloc-fixaddr/Moca-framesoc.csv|Moca-framesoc.csv]]
+        * Nothing on [[vfile:../../Traces/Moca/Moca-matrix-bloc-fixaddr/Moca-full-trace.csv|Moca-full-trace.csv]]
+        * Timestamp in Starts are not correctly sorted in `framesoc-parser.pl`

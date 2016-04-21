@@ -81,13 +81,13 @@ Ajouter le projet sur github + page
 
 == Conf ==
 
-* [ACM PAPP](http://oldwww.acm.org/conferences/sac/sac2016/) trop high level ...
-* [ACM/SPEC](https://icpe2016.spec.org/)
+* ACM PAPP http://oldwww.acm.org/conferences/sac/sac2016/ trop high level ...
+* ACM/SPEC https://icpe2016.spec.org/
     * International Conf on perf engineering
     * Track: Performance measurement and experimental analysis
     * 15 sept: abstract
     * 30 sept: paper
-* [VPA](http://cedmav.org/events/vpa-2015.html)
+* VPA http://cedmav.org/events/vpa-2015.html
     * Workshop SC
     * Memory and network traffic visualization
     * 27 juillet

@@ -1,0 +1,55 @@
+= Replace malloc =
+
+Currently two replace mallocs: Pin / LD_PRELOAD, the first reads debug flags
+while the second have a precise look at the backtrace but the first found bad
+addresses sometimes due to Pin messing arround with the address spaces.
+Possible solutions:
+* [ ] Keep two replace mallocs:
+    * [ ] Merge same address if addr < 0x7f....
+    * [ ] Merge by alloc number if addr > 0x7f..
+* [ ] Use only LD_PRELOAD based replace malloc
+    * [ ] Read debug flag with LD_PRELOAD
+
+== Bt anonymous struc 2 ==
+
+While comparing allocations on matrix and bt to find a proper way to merge
+allocations detected by both tools, I found that:
+{{{
+$ LD_PRELOAD=~/Work/Moca/src/libs/replace_malloc.so ~/Work/Bench/NPB3.3-OMP/bin/bt.A
+Moca malloc detected: 66490368,4096,libc.so.6:register_printf_specifier+0xcf/libquadmath.so.0:+0x2432/ld-linux-x86-64.so.2:+0xf2da:+0xf3eb:+0xcca
+Moca malloc detected: 66494544,32816,libc.so.6:+0xb4711:+0xb4813:get_nprocs_conf+0x16:__sysconf+0x558/libgomp.so.1:+0x10fe0:+0x6cc2/ld-linux-x86-64.so.2:+0xf2da:+0xf3eb:+0xcca
+
+
+ NAS Parallel Benchmarks (NPB3.3-OMP) - BT Benchmark
+
+ No input file inputbt.data. Using compiled defaults
+ Size:   64x  64x  64
+ Iterations:  200       dt:   0.0008000
+ Number of available threads:     4
+
+^C
+$ LD_PRELOAD=~/Work/Moca/src/libs/replace_malloc.so  ./matrix -a par_bloc -n 4 -S 1500 -s 89678
+Moca malloc detected: 31686848,32816,libc.so.6:+0xb4711:+0xb4813/libnuma.so.1:+0x3717/ld-linux-x86-64.so.2:+0xf29a:+0xf3eb:+0xcca
+Moca malloc detected: 31686848,32816,libc.so.6:+0xb4711:+0xb4813:get_nprocs_conf+0x16:__sysconf+0x558/libnuma.so.1:+0x37f3/ld-linux-x86-64.so.2:+0xf29a:+0xf3eb:+0xcca
+Main pid 6933
+using 4 threads
+Doing multiplications with 1 vsplits and 1 hsplits on 0 numanodes
+Moca malloc detected: 140338224975888,18000000,matrix:::/libc.so.6:__libc_start_main+0xf0/matrix:
+Moca malloc detected: 140338206973968,18000000,matrix:::/libc.so.6:__libc_start_main+0xf0/matrix:
+Moca malloc detected: 140338188972048,18000000,matrix:::/libc.so.6:__libc_start_main+0xf0/matrix:
+}}}
+
+The interesting thing is that the second malloc in external libraries  is very
+similar for both benchmarks, except that for matrices it goes to libnuma,
+while for bt it goes to libgomp.
+
+So the shared data structure we saw in bt traces is indeed in libgomp and
+probably correspond to the threads creation.
+
+We should try to replace libgomp by another OMP implementation, and see if the
+behavior changes.
+
+== Replace Pin ==
+
+* Intercept call to execve
+* Intercept call to open first arg =~ *.so

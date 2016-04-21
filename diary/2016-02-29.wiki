@@ -1,0 +1,13 @@
+* Framesoc fix Youenn:
+    * Ok for export
+    * Still slow / visu hard
+* Lucas: lot of progress, time to look at actual traces, see [[vfile:../../labbook-lucas/LabBook.org|LabBook]]
+* [o] Moca traces:
+    * [X] New mat-modulo (fix missing part of the trace)
+    * [.] MG:
+        * [X] Class S and W, no issue, very quick
+        * [ ] Class A, trying to find good parameters
+            * Base: 293 sec
+            * Reducing log interval helps down to 229s
+            * Increasing chunks size also  down to 199s
+            * Redo it more seriously

@@ -1,14 +1,14 @@
-= Paper =
+= Preparation =
 
-= Experiments =
+== Experiments ==
 
-== Param ==
+=== Param ===
 
 * Test Moca+Pin
 * verif script
 * Run to check defaults: **running**
 
-== NAS ==
+=== NAS ===
 
 * Two experiments:
     * Edel: Moca/MocaPin/Tabarnac/Mitos
@@ -22,3 +22,118 @@
             * Test parsing on different traces
                 * is.A => **CPU stuck, connection lost ...**
                     *  Essayer kareboot3 / lire log et faire bug report
+
+= Paper =
+
+== Urgent ==
+
+* [X] Upload raw traces
+
+== MocaPin ==
+
+*Question:* Pourquoi perte de qualité ?
+
+* Voir probe Mode
+* Voir difference trace si Pin task pas ignorées
+
+== Pin ==
+
+*Question:* Plus de 100% de pages tracées ?
+
+*Réponse possible:* Le JIT de Pin modifie l'espace d'adressage
+
+* Différence nb pages Moca / MocaPin:
+    * MocaPin => 150% de pages, mais on intercepte les routines de Pin
+    * Est-ce que les pages qui n'apparaissent pas dans Moca sont dans MocaPin ?
+        * Exemple: IS
+            * Traces très différentes niveau des address entre Moca et MocaPin
+            * Quelques pages "manquantes" apparaissent côté Pin et MocaPin
+            * Faire même vérif sans randomisation d'espace d'adressage
+                * Moca/pin/MocaPin(old):
+                    * Addresses basses (0x400 to 0x5000): quelques pages
+                      inversées, gros bout manquant pour pin
+                      présent pour les deux autres (47 pages) + quelques pages qui
+                      bougent un peu.
+                    * Block d'addresses uniquement côté MocaPin 0x8048 a
+                      0x7fffdc112
+                    * Addresses très différentes entre Moca et MocaPin dans la
+                      plage 0x7fff.....
+                    *  Address hautes (0x7fff00000 to 0x7ffff76aa): mêmes valeurs pour
+                       Moca et MocaPin, différent pour Pin. Puis gros block manquant
+                       côté Pin jusqu'à 0x7fffffffe. Beaucoup plus de valeurs
+                       cotés MocaPin.
+                    * Dernière addresse uniquement chez Pin 0xffffffffff5ff
+                    * Au final avec la derniere version Moca récupère plus d'addresses
+                      que Pin:
+                      {{{
+                         17180 moca_addr            # Moca latest
+                         17181 moca_addr2           # Moca latest
+                         17180 moca_addr3           # Moca latest
+                           487 moca+tab_addr        # Moca latest over tabarnac
+                          9666 mocaFlushBug_addr    # Moca version expe_hpdc
+                         23315 mocaPin_addr         # MocaPin version expe_hpdc
+                         17022 pin_addr             # Tabarnac
+                         17022 pin_addr_hexa        # Tabarnac
+                        112917 total
+                      }}}
+                     Traces extraites avec les commandes suivantes:
+                     {{{
+                        sed 1d Pin/is.A.full.page.csv | cut -d , -f 1 | sort -nu > pin_addr
+                        while read add; do echo "obase=16; $add" | bc; done < pin_addr  > pin_addr_hexa
+                        sed 1d Moca-is.A-2016-01-21_14-30-36/Moca-full-trace.csv | cut -d , -f 1 | sed 's/...$//' | sort -u | sed 's/^00*//' > moca_addr3
+                     }}}
+                * Moca + Tabarnac voir ce qui se recoupe:
+                    * Normalement mêmes addresse + structure tabarnac.
+                    * `BUG: bad page map` => Pin fait des choses étranges
+        * Sur jessie: on retrouve la même chose que dans les traces hpdc: un
+          trou de 10 à 30 pages au milieu des addresses hautes, et les address
+          Pin légèrement différentes de Tabarnac.
+            {{{
+                17016 is_moca_addr
+                17026 is_pin_addr
+                17026 is_pin_addr_hexa
+                 8691 ua_moca_addr
+                 8723 ua_pin_addr
+                 8723 ua_pin_addr_hexa
+                77205 total
+            }}}
+        * Après vérification (en utilisant le plot de tabarnac), aucune
+          addresse etant dans Pin et non dans Moca n'est dans une structure de
+          donnée
+
+=== Conclusions ===
+
+* Pin modifie clairement l'espace d'adressage et quand lancé avec Moca, influe
+sur la qualité des traces (beaucoup de parasites), d'où l'importance de faire
+deux exécutions séparées.
+* Le bug fix semble efficace sur wheezy, moins sur jessie.
+* L'effet de Pin changerait avec le compilateur, est-ce due a une différence
+  de version OMP ?
+
+=== A faire ===
+
+* [X] Relancer expe sans randomisation d'espace d'addressage **EN cours**
+    * [X] Runs manquants:
+        * [X] StRemi: Ok
+        * [X] Param: Ok
+        * [X] Nas-edel: Tout refaire
+* [o] Integrer resultats aux papier
+    * [ ] MemProfTun: tester si différences en jouant sur sampling rate
+    * [X] StRemi remplace Idfreeze (machine trop lente pause des problèmes)
+* [X] Verifier problemes qualités de traces MocaPin (need re-parse expé)
+
+=== MG ===
+
+*Question:* Pourquoi une telle overhead ?
+
+* [ ] Expé:
+    * [ ] mg S W A
+    * [ ] ft S W A B (C)
+    * [ ] is S W A B (C)
+    * [ ] Threads 1 2 4 8
+* [ ] Autre:
+    * [ ] Compter les conflicts dans les hashmaps
+    * [ ] Compter le nombre de fois ou on supprimer les ̀fpf `BAD`
+
+
+

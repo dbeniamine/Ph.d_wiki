@@ -1,108 +1,215 @@
 = Moca =
 
+== Paper ==
+
 * [[IPDPS]]
-* [[HPDC]] Initial expe preparation
+* [[HPDC]]
 
-== HPDC ==
+== Visu ==
 
-=== Urgent ===
+=== Description ===
 
-* Upload raw traces
+* First Idea
+{{{
+        Memroot
+            Structs
+                Pages
+                    Addr
+                        Read_T1
+                        Write_T2
+}}}
 
-=== MocaPin ===
+This version is too heavy for ocelotl
 
-*Question:* Pourquoi perte de qualité ?
+* New description:
+    * Shared detections at page level (before import, perl script)
+        * New intervals to show precise sharing
+    * Types: shared private
+    * For one address parameters: Tid, CPUMask
 
-* Voir probe Mode
-* Voir difference trace si Pin task pas ignorées
+=== Issue data structure detection ===
 
-=== Pin ===
+Visu new traces Moca via ocelotl:
+    * Fix Youenn => slow but working
+        * [X] 2nd fix fadter
+    * TrimOutOfStruct seems HS
+        * Missing data structures / structures badly placed
+            *  Tracked addr does not correspond to pin addr, issue with
+               `randomize_va_space` ?
+                * Matrix trace with manual data struct addr dump:
+                    * Two series of addresses Pin/Moca
+                    * Clear manually `randomize_va_space` does not change
+                      anything
+            * [X] `Verify randomize_va_space does` what we want
+                * Same addresses with Moca / nothing
+                * Different addresses under pin:
+{{{
+root@edel-65:/tmp# /tmp/matrix/matrix -a par_bloc -S 1500 -s 4656 -n 4
+Main pid 3568
+using 4 threads
+Doing multiplications with 1 vsplits and 1 hsplits on 0 numanodes
+A,140737323565072,18000000
+B,140737305563152,18000000
+C,140737287561232,18000000
+Global init from 0 to 2250000
+thread 1 alive  pid 3568 tid 3569  on node 0
+thread 2 alive  pid 3568 tid 3570  on node 32767
+thread 3 alive  pid 3568 tid 3571  on node 0
+thread 4 alive  pid 3568 tid 3572  on node 0
+----------> 2160.648680 (ms)
+root@edel-65:/tmp# /tmp/Moca/src/utils/moca -P -c /tmp/matrix/matrix -a "-a par_bloc -S 1500 -s 4656 -n 4"
+/tmp/Moca/src make
+make -C pintool
+make[1]: Entering directory '/tmp/Moca/src/pintool'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/tmp/Moca/src/pintool'
+Retrieving data structures from file /tmp/matrix/matrix
+Retrieving data structures from file /lib64/ld-linux-x86-64.so.2
+Retrieving data structures from file /lib/x86_64-linux-gnu/libpthread.so.0
+Retrieving data structures from file /lib/x86_64-linux-gnu/librt.so.1
+Retrieving data structures from file /usr/lib/x86_64-linux-gnu/libnuma.so.1
+Retrieving data structures from file /lib/x86_64-linux-gnu/libc.so.6
+Main pid 3633
+using 4 threads
+Doing multiplications with 1 vsplits and 1 hsplits on 0 numanodes
+A,140736990584848,18000000
+B,140736972582928,18000000
+C,140736954581008,18000000
+Global init from 0 to 2250000
+thread 1 alive  pid 3633 tid 3640  on node 0
+thread 2 alive  pid 3633 tid 3641  on node 32767
+thread 4 alive  pid 3633 tid 3643  on node 0
+thread 3 alive  pid 3633 tid 3642  on node 0
+----------> 2288.544072 (ms)
+/tmp
+Moca correctly loaded, executing: "/tmp/matrix/matrix -a par_bloc -S 1500 -s 4656 -n 4"
+Main pid 3652
+using 4 threads
+Doing multiplications with 1 vsplits and 1 hsplits on 0 numanodes
+A,140737323565072,18000000
+B,140737305563152,18000000
+C,140737287561232,18000000
+Global init from 0 to 2250000
+thread 1 alive  pid 3652 tid 3658  on node 0
+thread 2 alive  pid 3652 tid 3659  on node 32767
+thread 3 alive  pid 3652 tid 3660  on node 0
+thread 4 alive  pid 3652 tid 3661  on node 0
+----------> 105355.291213 (ms)
+matrix ended code 0
+done in 00 h 01 min 45.404 sec
+Unloading Moca module
+done in 00 h 00 min 00.443 sec
+Retrieving Moca log
+Moca trace completly flushed
+File /tmp/Moca-matrix-2016-02-19_14-59-44/Moca-output.log created with Moca output in 00 h 00 min 00.468 sec
+Not creating framesoc files
+You can generate them later by running:
+cd /tmp/Moca-matrix-2016-02-19_14-59-44; /tmp/Moca/src/utils/../../src/utils/create_event_producer.sh 4096 /tmp/Moca-matrix-2016-02-19_14-59-44/Moca-.csv
+Moca analysis done
+Total time: 00 h 01 min 49.256 sec
+Log directory: /tmp/Moca-matrix-2016-02-19_14-59-44
+Bye!
+}}}
+    * [ ] same issue with static addresses ?
+        * [ ] Addresse structures IS ?
+    * Apply a shift on Pin addresses should be enoughh
+    * Compute delta from known addr ?
+        ̀* `grep stack /proc/self/maps | head -n  1 | cut -d - -f 1`
+            * Stack start pin:  140736840773632
+            * A pin:            140736976588816
+            * Stack start ref:  140737211994112
+            * A ref:            140737309564944
+            * Delta stack:      371220480
+            * Delta A:          332976128
+            * Delta glibc:      331231232
+    * These data structures addr are in the stack !
+    * No shifts for small mallocs (actually in heap):
+{{{
+root@edel-8:/tmp# /tmp/matrix/matrix -a par_bloc -S 100 -s 2432 -n 4
+Main pid 4145
+using 4 threads
+Doing multiplications with 1 vsplits and 1 hsplits on 0 numanodes
+A,6304352,80000
+B,6384368,80000
+C,6464384,80000
+Global init from 0 to 10000
+thread 1 alive  pid 4145 tid 4146  on node 0
+thread 4 alive  pid 4145 tid 4149  on node 0
+thread 3 alive  pid 4145 tid 4148  on node 0
+thread 2 alive  pid 4145 tid 4147  on node 0
+----------> 1.382489 (ms)
+root@edel-8:/tmp# pin -xyzzy -enable_vsm 0 -t /tmp/Moca/src/pintool/obj-intel64/*.so -- /tmp/matrix/matrix -a par_bloc -S 100 -s 2432 -n 4
+Retrieving data structures from file /tmp/matrix/matrix
+Retrieving data structures from file /lib64/ld-linux-x86-64.so.2
+Retrieving data structures from file /lib/x86_64-linux-gnu/libpthread.so.0
+Retrieving data structures from file /lib/x86_64-linux-gnu/librt.so.1
+Retrieving data structures from file /usr/lib/x86_64-linux-gnu/libnuma.so.1
+Retrieving data structures from file /lib/x86_64-linux-gnu/libc.so.6
+Main pid 4150
+using 4 threads
+Doing multiplications with 1 vsplits and 1 hsplits on 0 numanodes
+A,6304352,80000
+B,6384368,80000
+C,6464384,80000
+Global init from 0 to 10000
+thread 1 alive  pid 4150 tid 4157  on node 0
+thread 2 alive  pid 4150 tid 4158  on node 0
+thread 3 alive  pid 4150 tid 4159  on node 0
+thread 4 alive  pid 4150 tid 4160  on node 0
+----------> 84.163349 (ms)
+}}}
+    * [X] Check Ocelotl on manually corrected traces
 
-*Question:* Plus de 100% de pages tracées ?
+==== Solution ====
 
-*Réponse possible:* Le JIT de Pin modifie l'espace d'adressage
+* Pin prob mode ?
+    * Harder to install (?)
+    * **Might change behavior**:
+        "If you are using probe mode, you cannot use the standard glibc on your system"
+        cf https://software.intel.com/sites/landingpage/pintool/docs/71313/Pin/html/index.html#LIBRARIES_PROBE
+* Replace malloc + use proc maps for stack:
+    * [X] Remove stackmap detection from pin
+    * [X] Detect stackmap from `/proc/<pid>/maps`
+    * [X] Wrapper on malloc: if alloc > heapmax then print first addr
+    * [X] Replace results in structs.csv file
+    * [o] Tests
+        * [X] Framesoc import
+            * [X] *warning:* alloc in stacks causes bad view if imported with
+              `stackmap.csv`
+            * [X] FIXIssue: we need to sort structures by addresses before replacing
+        * [X] Fully automated generation
+        * [ ] Regenerate trace IS
+        * [ ] Regenerate trace mat-modulo
+        * [X] `LD_PRELOAD` on pin
 
-* Différence nb pages Moca / MocaPin:
-    * MocaPin => 150% de pages, mais on intercepte les routines de Pin
-    * Est-ce que les pages qui n'apparaissent pas dans Moca sont dans MocaPin ?
-        * Exemple: IS
-            * Traces très différentes niveau des address entre Moca et MocaPin
-            * Quelques pages "manquantes" apparaissent côté Pin et MocaPin
-            * Faire même vérif sans randomisation d'espace d'adressage
-                * Moca/pin/MocaPin(old):
-                    * Addresses basses (0x400 to 0x5000): quelques pages inversé, gros bout manquant pour pin
-                      présent pour les deux autres (47 pages) + quelques pages qui
-                      bougent un peu.
-                    * Block d'addresses uniquement côté MocaPin 0x8048 a
-                      0x7fffdc112
-                    * Addresses très différentes entre Moca et MocaPin dans la
-                      plage 0x7fff.....
-                    *  Address hautes (0x7fff00000 to 0x7ffff76aa): mêmes valeurs pour
-                       Moca et MocaPin, différent pour Pin. Puis gros block manquant
-                       côté Pin jusqu'à 0x7fffffffe. Beaucoup plus de valeurs
-                       cotés MocaPin.
-                    * Dernier addresse uniquement chez Pin 0xffffffffff5ff
-                    * Au final avec la derniere version Moca récupère plus d'addresses
-                      que Pin:
-                      {{{
-                         17180 moca_addr            # Moca latest
-                         17181 moca_addr2           # Moca latest
-                         17180 moca_addr3           # Moca latest
-                           487 moca+tab_addr        # Moca latest over tabarnac
-                          9666 mocaFlushBug_addr    # Moca version expe_hpdc
-                         23315 mocaPin_addr         # MocaPin version expe_hpdc
-                         17022 pin_addr             # Tabarnac
-                         17022 pin_addr_hexa        # Tabarnac
-                        112917 total
-                      }}}
-                     Traces extraites avec les commandes suivantes:
-                     {{{
-                        sed 1d Pin/is.A.full.page.csv | cut -d , -f 1 | sort -nu > pin_addr
-                        while read add; do echo "obase=16; $add" | bc; done < pin_addr  > pin_addr_hexa
-                        sed 1d Moca-is.A-2016-01-21_14-30-36/Moca-full-trace.csv | cut -d , -f 1 | sed 's/...$//' | sort -u | sed 's/^00*//' > moca_addr3
-                     }}}
-                * Moca + Tabarnac voir ce qui se recoupe:
-                    * Normalement mêmes addresse + structure tabarnac.
-                    * `BUG: bad page map` => Pin fait des choses étranges
-        * Sur jessie: on retrouve la même chose que dans les traces hpdc: un
-          trou de 10 à 30 pages au milieu des addresses hautes, et les address
-          Pin légèrement différentes de Tabarnac.
-            {{{
-                17016 is_moca_addr
-                17026 is_pin_addr
-                17026 is_pin_addr_hexa
-                 8691 ua_moca_addr
-                 8723 ua_pin_addr
-                 8723 ua_pin_addr_hexa
-                77205 total
-            }}}
-
-==== Conclusions ====
-
-* Pin modifie clairement l'espace d'addressage et quand lancé avec Moca, influe
-sur la qualité des traces (beaucoup de parasites), d'où l'importance de faire
-deux exécutions séparées.
-* Le bug fix semble efficace sur wheezy, moins sur jessie.
-* L'effet de Pin changerait avec le compilateur, est-ce due a une différence
-  de version OMP ?
-
-==== A faire ====
-
-* Relancer expe sans randomisation d'espace d'addressage **EN cours**
-* Verifier problemes qualités de traces MocaPin (need re-parse expé)
-
-=== MG ===
-
-*Question:* Pourquoi une telle overhead ?
-
-* Expé:
-    * mg S W A
-    * ft S W A B (C)
-    * is S W A B (C)
-    * Threads 1 2 4 8
-* Autre:
-    * Compter les conflicts dans les hashmaps
-    * Compter le nombre de fois ou on supprimer les ̀fpf `BAD`
+For information, proof that pin actually change the malloc address:
+{{{
+LD_PRELOAD=/tmp/Moca/src/libs/replace_malloc.so pin -xyzzy -enable_vsm 0 -t /tmp/Moca/src/pintool/obj-intel64/*.so --  /tmp/matrix/matrix -a par_bloc -S 1000 -s 98678 -n 4
+ERROR: ld.so: object '/tmp/Moca/src/libs/replace_malloc.so' from LD_PRELOAD cannot be preloaded (wrong ELF class: ELFCLASS64): ignored.
+Retrieving data structures from file /tmp/matrix/matrix
+Retrieving data structures from file /lib64/ld-linux-x86-64.so.2
+Retrieving data structures from file /tmp/Moca/src/libs/replace_malloc.so
+Retrieving data structures from file /lib/x86_64-linux-gnu/libpthread.so.0
+Retrieving data structures from file /lib/x86_64-linux-gnu/librt.so.1
+Retrieving data structures from file /usr/lib/x86_64-linux-gnu/libnuma.so.1
+Retrieving data structures from file /lib/x86_64-linux-gnu/libc.so.6
+Retrieving data structures from file /lib/x86_64-linux-gnu/libdl.so.2
+Main pid 2023
+using 4 threads
+Doing multiplications with 1 vsplits and 1 hsplits on 0 numanodes
+Moca high malloc detected at 139792931368976
+Moca high malloc detected at 139792923365392
+Moca high malloc detected at 139792915361808
+A,139792931368976,8000000
+B,139792923365392,8000000
+C,139792915361808,8000000
+Global init from 0 to 1000000
+thread 1 alive  pid 2023 tid 2030  on node 0 
+thread 2 alive  pid 2023 tid 2031  on node 32548 
+thread 3 alive  pid 2023 tid 2032  on node 0 
+thread 4 alive  pid 2023 tid 2033  on node 0 
+----------> 681.208350 (ms)
+}}}
 
 == Benchmarks ==
 

@@ -1,0 +1,5 @@
+* [o] Labbook:
+    * [X] Focus on middle data struct
+    * [X] IS / BT traces ?
+    * [ ] Update framesoc importer to do similar visu
+* [ ] Thesis bit of writing on experiment reproducibility

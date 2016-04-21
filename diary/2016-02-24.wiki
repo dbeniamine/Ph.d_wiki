@@ -1,0 +1,1 @@
+* [X] Fix Pin error see [[../Moca#Moca#Visu#Issue data structure detection#Solution]]

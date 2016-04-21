@@ -1,0 +1,30 @@
+= Moca traces =
+
+== Framesoc / Ocelotl ==
+
+=== Importer ===
+
+* Hierarchy + data structures ok
+* Keep only accesses on memory structs
+
+=== Visu ===
+
+Very slow / unable to re run / modify p value: there is probably a memory
+leak, Youenn is (?) looking for it see:
+https://github.com/soctrace-inria/framesoc/issues/189
+
+
+== Paje ==
+
+* Using dump via framesoc
+* pje_gantt can display States:
+    * No hierarchy informations
+    * Why do we use variables in framesoc ?
+    * BUG:
+    {{{
+        $ ~/install/pajeng/bin/pj_gantt MocaPin_is_A_20160211_110132_CET_Virtual_1_dumped.csv
+        Error in seq.default(from = best$lmin, to = best$lmax, by = best$lstep) : 
+          'from' must be of length 1
+        Calls: print ... f -> <Anonymous> -> <Anonymous> -> seq -> seq.default
+        Execution halted
+    }}}

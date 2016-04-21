@@ -1,6 +1,40 @@
-Voir reflexions [[Moca]]
+= Mail Guillaume =
 
-= Sofa =
+* État des choses, avancement, délais rédaction, post thèse
+* Objectif analyse:
+    * Décrire une méthodologie
+    * Placement par rapport a Harald Servat ?
+        * Même genre de plot
+        * Mettre l'accent sur le partage de données.
+        * TODO: mettre ref dans papier ?
 
-* Prévoir réunion début Janvier ?
-* Autre appli taille intermédiaire ?
+* Alternatives GOMP ? KOMP
+
+* Fichier association nom malloc#id
+* Traces SOFA **URGENT**
+* Josefina Lenis ?
+* Voir applis DataMove
+    * Ziad
+    * Clément
+
+== Bt ==
+
+
+== R ==
+
+* Discussion with Lucas
+* Several protos
+* see [[file:../labbook-lucas/LabBook.org]]
+    * [X] Patterns of Matrix
+    * [X] Patterns IS: Ko not precise enough
+    * UnnamedStruct#id => Identify library name, using `/proc/pid/map` ?
+        * Fail not found ?
+
+Bt:
+    * Operation tableaux ?
+    * Combiens de pages ?
+
+Utilisation Moca en debug ?
+
+Traces shell interactif au dessus de R:
+    * Si traces trop grosse => framesoc sinon, pas nécessaire
