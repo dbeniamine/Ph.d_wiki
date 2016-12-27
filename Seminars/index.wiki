@@ -10,6 +10,7 @@
 
 = Memo =
 
+* [[Pre_Soutenance_T_Lavocat]]
 * [[MOAIS_2014|MOAIS 2014]]
 * [[ordoId_D_Glesser_20140131|D. Glesser ordo id]]
 * [[A_Legrand_SimGrid-HPC-20131205|A. Legrand Simgrid]]

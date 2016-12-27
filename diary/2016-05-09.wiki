@@ -1,0 +1,12 @@
+= Visu Moca =
+
+Working on fgemm (fflas-lapack) traces.
+
+First traces had issues with the address pace:
+    * [X] BUG Fixed: va_space_randomization was not removed anymore (since
+          when ?)
+    * [ ] Address inside a dynamic binary is only an offset, the true address
+          of a structure should be offset+addr(binary)
+        * Using ldd + Offet: 0 accesses within Givaro structures
+        * Without offset: 0 accesses within Givaro structures
+        * Only 163/232 (depending on the trace) accesses in the malloc'ed addresses ...

@@ -1,0 +1,8 @@
+= Lulesh =
+
+* There are 150306 mallocs in the structs.csv file.
+* Each mallocs has the same stack:
+    {{{
+    moca.so:0x7ffff77dad9d:0x7ffff77da9bd/lulesh2.0:0x409ff7/libc.so.6:0x7ffff5e06b45/lulesh2.0:0x40b5af
+    }}}
+* Mallocs can be grouped by set of same size.

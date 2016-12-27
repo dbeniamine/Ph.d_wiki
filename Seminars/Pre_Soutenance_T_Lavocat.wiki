@@ -1,0 +1,20 @@
+= Gotaktuk, a versatile parallel launcher =
+
+== Présentation ==
+
+* Slide plan trop détaillé ?
+* Expliquer HPC / Exascale
+* Slide 4
+    *  coleur/ textbf pour alleger la table
+    * Broadcasting / scheduling
+* Peut etre inverser problématique /etat de l'art ?
+* Slide 6 definition remote execution deployment ne colle pas a ce que tu dit
+* Code court == maintenable ?
+* Slide 18 efficiency percentage (slide 18) ?
+
+
+== Questions ? ==
+
+* Noeud lent avec pleins de tache en bout d'arbre, possibilité de re-equilibrage ?
+* Remontée des états de synchro partiels (barrières, slide 11) / résiliance noeud HS ?
+* Reprise des taches des enfants => copie du travail a tous les niveaux de l'arbre ?
